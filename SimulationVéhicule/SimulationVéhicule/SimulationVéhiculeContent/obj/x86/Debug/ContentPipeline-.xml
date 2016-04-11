@@ -1,0 +1,551 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Models\MustangGT500SansRoue.FBX</Source>
+      <Name>Models\MustangGT500SansRoue</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500SansRoue.xnb</Output>
+      <Time>2016-03-21T12:41:29.6074064-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Key>
+        <Value>2016-03-21T12:42:34.7543372-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500.FBX</Source>
+      <Name>Models\MustangGT500</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500.xnb</Output>
+      <Time>2016-02-08T12:48:50.4661642-05:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\MustangGT500_0.xml</Key>
+        <Value>2016-03-21T12:42:36.5276276-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\tank.fbx</Source>
+      <Name>Models\tank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\tank.xnb</Output>
+      <Time>2016-03-21T12:41:29.7003692-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\tank_0.xml</Key>
+        <Value>2016-03-21T12:42:37.7541368-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Request>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Audi R8.fbx</Source>
+      <Name>Models\Audi R8</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Audi R8.xnb</Output>
+      <Time>2016-03-21T12:41:29.5574264-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Audi R8_0.xml</Key>
+        <Value>2016-03-21T12:42:45.7539356-04:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\Pneu.FBX</Source>
+      <Name>Models\Pneu</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Pneu.xnb</Output>
+      <Time>2016-03-21T12:41:29.613404-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Pneu_0.xml</Key>
+        <Value>2016-03-21T12:42:46.9404608-04:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Textures\route.jpg</Source>
+      <Name>Textures\route</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\route.xnb</Output>
+      <Time>2016-03-21T12:41:29.9262788-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Corroga.jpg</Source>
+      <Name>Models\_Corroga</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga.xnb</Output>
+      <Time>2016-02-08T12:47:39.87749-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_01.jpg</Source>
+      <Name>Models\_Pool_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01.xnb</Output>
+      <Time>2016-02-08T12:47:39.880493-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_02.jpg</Source>
+      <Name>Models\_Pool_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02.xnb</Output>
+      <Time>2016-02-08T12:47:39.884497-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_03.jpg</Source>
+      <Name>Models\_Pool_03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03.xnb</Output>
+      <Time>2016-02-08T12:47:39.8875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_Wa.jpg</Source>
+      <Name>Models\_Pool_Wa</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa.xnb</Output>
+      <Time>2016-02-08T12:47:39.892505-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\engine_diff_tex.tga</Source>
+      <Name>Models\engine_diff_tex</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex.xnb</Output>
+      <Time>2016-03-21T12:41:29.663384-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\turret_alt_diff_tex.tga</Source>
+      <Name>Models\turret_alt_diff_tex</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex.xnb</Output>
+      <Time>2016-03-21T12:41:29.728358-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\DétailsTerrain.jpg</Source>
+      <Name>Textures\DétailsTerrain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain.xnb</Output>
+      <Time>2016-03-21T12:41:29.903288-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Terrain.bmp</Source>
+      <Name>Textures\Terrain</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Terrain.xnb</Output>
+      <Time>2016-03-21T12:41:29.908286-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\test.bmp</Source>
+      <Name>Textures\test</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\test.xnb</Output>
+      <Time>2016-03-21T12:41:29.9702612-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\speedometer3.png</Source>
+      <Name>Textures\speedometer3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\speedometer3.xnb</Output>
+      <Time>2016-03-21T12:41:29.9692616-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\aiguille2.png</Source>
+      <Name>Textures\aiguille2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\aiguille2.xnb</Output>
+      <Time>2016-03-21T12:41:29.9172824-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notification.png</Source>
+      <Name>Textures\notification</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notification.xnb</Output>
+      <Time>2016-03-21T12:41:29.9212808-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notif.png</Source>
+      <Name>Textures\notif</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notif.xnb</Output>
+      <Time>2016-03-21T12:41:29.918282-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notifFinCourse.png</Source>
+      <Name>Textures\notifFinCourse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifFinCourse.xnb</Output>
+      <Time>2016-03-21T12:41:29.9192816-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notifTour.png</Source>
+      <Name>Textures\notifTour</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifTour.xnb</Output>
+      <Time>2016-03-21T12:41:29.9202812-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\acceleration.wav</Source>
+      <Name>Sounds\acceleration</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\acceleration.xnb</Output>
+      <Time>2016-02-08T12:48:50.7194172-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\EngineSound.wav</Source>
+      <Name>Sounds\EngineSound</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\EngineSound.xnb</Output>
+      <Time>2016-02-08T12:48:50.7034012-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\brakeEffect.wav</Source>
+      <Name>Sounds\brakeEffect</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\brakeEffect.xnb</Output>
+      <Time>2016-02-08T12:48:50.7354332-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\notif.wav</Source>
+      <Name>Sounds\notif</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\notif.xnb</Output>
+      <Time>2016-03-21T12:41:29.89829-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Arial.spritefont</Source>
+      <Name>Fonts\Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
+      <Time>2016-03-21T12:43:31.0877948-04:00</Time>
+    </Item>
+    <Item>
+      <Source>effects.fx</Source>
+      <Name>effects</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\effects.xnb</Output>
+      <Time>2016-03-21T12:41:29.9792576-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500SansRoue.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Output>
+      <Time>2016-03-21T12:41:29.6074064-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Corroga.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Output>
+      <Time>2016-02-08T12:47:39.87749-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_03.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Output>
+      <Time>2016-02-08T12:47:39.8875-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_02.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Output>
+      <Time>2016-02-08T12:47:39.884497-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_Wa.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Output>
+      <Time>2016-02-08T12:47:39.892505-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\_Pool_01.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Output>
+      <Time>2016-02-08T12:47:39.880493-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\MustangGT500_0.xml</Output>
+      <Time>2016-02-08T12:48:50.4661642-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\tank.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\tank_0.xml</Output>
+      <Time>2016-03-21T12:41:29.7003692-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\engine_diff_tex.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Output>
+      <Time>2016-03-21T12:41:29.663384-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\turret_alt_diff_tex.tga</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Output>
+      <Time>2016-03-21T12:41:29.728358-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Audi R8.fbx</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Audi R8_0.xml</Output>
+      <Time>2016-03-21T12:41:29.5574264-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Pneu.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Pneu_0.xml</Output>
+      <Time>2016-03-21T12:41:29.613404-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\Ciel.x</Source>
+      <Name>Models\Ciel</Name>
+      <Importer>XImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Ciel.xnb</Output>
+      <Time>2016-03-21T13:00:47.5097444-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Ciel_0.xml</Key>
+        <Value>2016-03-21T13:01:12.8652797-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\cloudMap_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Ciel.x</Source>
+      <Importer>XImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\Ciel_0.xml</Output>
+      <Time>2016-03-21T13:00:47.5097444-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\cloudMap.jpg</Source>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
+        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
+        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
+        <Data Key="GenerateMipmaps" Type="bool">true</Data>
+        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
+        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\cloudMap_0.xnb</Output>
+      <Time>2016-03-21T13:01:51.302123-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\cloudMap.jpg</Source>
+      <Name>Models\cloudMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\cloudMap.xnb</Output>
+      <Time>2016-03-21T13:01:51.302123-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\cloudMap.jpg</Source>
+      <Name>Textures\cloudMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\cloudMap.xnb</Output>
+      <Time>2016-03-21T13:09:23.8723755-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest.png</Source>
+      <Name>Textures\CarteTest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest.xnb</Output>
+      <Time>2016-03-21T14:26:18.4532627-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\DétailsTerrain2.jpg</Source>
+      <Name>Textures\DétailsTerrain2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain2.xnb</Output>
+      <Time>2016-03-21T14:31:26.231645-04:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID Null="true" />
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30-04:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-01-11T11:00:11.8030505-05:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
