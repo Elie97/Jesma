@@ -343,11 +343,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\map.jpg">
-      <Name>map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\CarteTest4.png">
       <Name>CarteTest4</Name>
       <Importer>TextureImporter</Importer>
@@ -409,13 +404,6 @@
   <ItemGroup>
     <Compile Include="Models\Bridge.FBX">
       <Name>Bridge</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Models\testCarte.FBX">
-      <Name>testCarte</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>

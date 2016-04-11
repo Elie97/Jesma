@@ -41,6 +41,7 @@ namespace SimulationVéhicule
         RessourcesManager<Model> GestionnaireDeModèles { get; set; }
         Effect effect;
 
+        public bool CourseActive { get; set; }
         public LeTerrain2(Game jeu, float homothétieInitiale, Vector3 rotationInitiale, Vector3 positionInitiale,
                        Vector3 étendue, string nomCarteTerrain, string nomTextureTerrain, int nbNiveauxTexture, float intervalleMAJ)
             : base(jeu, homothétieInitiale, rotationInitiale, positionInitiale, intervalleMAJ)
@@ -53,6 +54,7 @@ namespace SimulationVéhicule
 
         public override void Initialize()
         {
+            CourseActive = false;
             GestionnaireDeTextures = Game.Services.GetService(typeof(RessourcesManager<Texture2D>)) as RessourcesManager<Texture2D>;
             CarteTerrain = GestionnaireDeTextures.Find(NomCarteTerrain);
             TextureTerrain = GestionnaireDeTextures.Find(NomTextureTerrain);
@@ -61,6 +63,7 @@ namespace SimulationVéhicule
             InitialiserDonnéesTexture();
             Origine = new Vector3(-Étendue.X / 2 + 1, 0, Étendue.Z / 2);
             AllouerTableaux();
+            //CaméraJeu = Game.Services.GetService(typeof(Caméra)) as CaméraSubjective;
             base.Initialize();
         }
 
@@ -214,29 +217,34 @@ namespace SimulationVéhicule
 
         public override void Draw(GameTime gameTime)
         {
-            GestionMatriceMonde();
-            EffetDeBase.World = GetMonde();
-            EffetDeBase.View = CaméraJeu.Vue;
-            EffetDeBase.Projection = CaméraJeu.Projection;
-            EffetDeBase.LightingEnabled = true;
-            EffetDeBase.AmbientLightColor = new Vector3(0.25f, 0.25f, 0.25f);
-
-            foreach (ModelMesh Mesh in Ciel.Meshes)
+            //CourseActive = GetCourseActive();
+            Game.Window.Title = CourseActive.ToString();
+            if (CourseActive)
             {
-                foreach (BasicEffect Effect in Mesh.Effects)
+                GestionMatriceMonde();
+                EffetDeBase.World = GetMonde();
+                EffetDeBase.View = CaméraJeu.Vue;
+                EffetDeBase.Projection = CaméraJeu.Projection;
+                EffetDeBase.LightingEnabled = true;
+                EffetDeBase.AmbientLightColor = new Vector3(0.25f, 0.25f, 0.25f);
+
+                foreach (ModelMesh Mesh in Ciel.Meshes)
                 {
-                    Effect.Projection = CaméraJeu.Projection;
-                    Effect.View = CaméraJeu.Vue;
-                    Effect.World = TransformationsModèle[Mesh.ParentBone.Index] * Matrix.CreateScale(20000) * Matrix.CreateTranslation(new Vector3(CaméraJeu.Position.X, -9500, CaméraJeu.Position.Z));
+                    foreach (BasicEffect Effect in Mesh.Effects)
+                    {
+                        Effect.Projection = CaméraJeu.Projection;
+                        Effect.View = CaméraJeu.Vue;
+                        Effect.World = TransformationsModèle[Mesh.ParentBone.Index] * Matrix.CreateScale(20000) * Matrix.CreateTranslation(new Vector3(CaméraJeu.Position.X, -9500, CaméraJeu.Position.Z));
+                    }
+                    Mesh.Draw();
                 }
-                Mesh.Draw();
-            }
 
 
-            foreach (EffectPass passeEffet in EffetDeBase.CurrentTechnique.Passes)
-            {
-                passeEffet.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleList, Sommets, 0, NbTriangles);
+                foreach (EffectPass passeEffet in EffetDeBase.CurrentTechnique.Passes)
+                {
+                    passeEffet.Apply();
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionNormalTexture>(PrimitiveType.TriangleList, Sommets, 0, NbTriangles);
+                }
             }
             base.Draw(gameTime);
         }
@@ -304,6 +312,11 @@ namespace SimulationVéhicule
                     indices[counter++] = lowerRight;
                 }
             }
+        }
+
+        public bool GetCourseActive(bool courseActive)
+        {
+            return courseActive;
         }
     }
 }

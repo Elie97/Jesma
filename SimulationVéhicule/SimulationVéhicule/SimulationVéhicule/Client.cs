@@ -46,8 +46,8 @@ namespace SimulationVéhicule
         public override void Initialize()
         {
             BufferSize = 2048;
-            IP = "192.168.2.28";
-            Port = 1299;
+            IP = "172.17.106.124";
+            Port = 5004;
             LeClient = new TcpClient();
             LeClient.NoDelay = true;
             LeClient.Connect(IP, Port);
@@ -167,8 +167,8 @@ namespace SimulationVéhicule
                     float rx = Reader.ReadSingle();
                     float ry = Reader.ReadSingle();
                     float rz = Reader.ReadSingle();
-                    string id = Reader.ReadString();
-                    string ip = Reader.ReadString();
+                    //string id = Reader.ReadString();
+                    //string ip = Reader.ReadString();
                     //ListeVoiture[1].Afficher = true;
                     ListeVoiture[1].Position = new Vector3(px, py, pz);
                     ListeVoiture[1].Rotation = new Vector3(rx, ry, rz);

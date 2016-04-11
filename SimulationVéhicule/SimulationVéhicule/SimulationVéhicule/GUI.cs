@@ -95,6 +95,7 @@ namespace SimulationVéhicule
 
         bool DépartCourse { get; set; }
 
+        bool CourseActive { get; set; }
         public GUI(Game game, float intervalleMAJ, string aiguille, string accéléromètre, int nbVoiture, int nbTours, int idVoitureUtilisateur, Vector2 dimensionÉcran, int modeDeJeu)
             : base(game)
         {
@@ -180,50 +181,55 @@ namespace SimulationVéhicule
 
         public override void Update(GameTime gameTime)
         {
-            if (Afficher)
+            CourseActive = (bool)Game.Services.GetService(typeof(bool));
+            if (CourseActive)
             {
-                TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
+                if (Afficher)
                 {
-                    if (TempsDépart / 60f <= 4)
+                    TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
                     {
-                        TempsDépart++;
+                        if (TempsDépart / 60f <= 4)
+                        {
+                            TempsDépart++;
+                        }
+                        //GestionDépart();
+                        if (ToursFait != NbTours && TempsDépart / 60f > 2)
+                        {
+                            Temps++;
+                        }
+
+                        AfficherNotif(VérificationChangementTour());
+
+                        NotificationTour(VérificationChangementTour());
+
+
+                        PositionAccéléromètre = new Vector2(103, Game.Window.ClientBounds.Height - 130);
+                        PositionVitesse = new Vector2(54, Game.Window.ClientBounds.Height - 42);
+                        PositionDePosition = new Vector2(Percent(5, true), Percent(10, false));
+                        PositionTemps = new Vector2(Percent(5, true), Percent(15, false));
+                        PositionTour = new Vector2(Percent(95, true), Percent(10, false));
+                        PositionDépart = new Vector2(Percent(50, true), Percent(50, false));
+
+                        DimensionDépart = ArialFont.MeasureString(ÉtatDépart);
+                        DimensionVitesse = ArialFont.MeasureString(Vitesse);
+                        DimensionPosition = ArialFont.MeasureString(PositionUtilisateur.ToString() + "/" + NbVoiture.ToString());
+                        DimensionTemps = ArialFont.MeasureString(TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString());
+                        DimensionTour = ArialFont.MeasureString(PourcentageCourse.ToString("0/0"));
+                        DimensionNotif = new Vector2(300 * ÉchelleNotif, 50 * ÉchelleNotif);
+                        PositionNotif = new Vector2(Game.Window.ClientBounds.Width / 2f - DimensionNotif.X / 2f, PositionNotif.Y);
+                        DimensionMessageNotif = ArialFont.MeasureString(GetMessage(0));
+                        PositionMessageNotif = PositionNotif + new Vector2(150 * ÉchelleNotif, DimensionNotif.Y / 2f);
+                        RotationAiguille = ((Math.Abs(Convert.ToInt32(Vitesse) / Voiture.VITESSE_MAX)) * (float)2.2f) + 0.85f;//Vitesse max!
+                        if (DébuterTemps)
+                        {
+                            GestionTemps();
+                        }
+                        TempsMilliSeconde = TableauTemps[0] + TableauTemps[1] * 60 + TableauTemps[2] * 3600;
+                        TempsÉcouléDepuisMAJ = 0;
                     }
-                    //GestionDépart();
-                    if (ToursFait != NbTours && TempsDépart / 60f > 2)
-                    {
-                        Temps++;
-                    }
-
-                    AfficherNotif(VérificationChangementTour());
-
-                    NotificationTour(VérificationChangementTour());
-
-
-                    PositionAccéléromètre = new Vector2(103, Game.Window.ClientBounds.Height - 130);
-                    PositionVitesse = new Vector2(54, Game.Window.ClientBounds.Height - 42);
-                    PositionDePosition = new Vector2(Percent(5, true), Percent(10, false));
-                    PositionTemps = new Vector2(Percent(5, true), Percent(15, false));
-                    PositionTour = new Vector2(Percent(95, true), Percent(10, false));
-                    PositionDépart = new Vector2(Percent(50, true), Percent(50, false));
-
-                    DimensionDépart = ArialFont.MeasureString(ÉtatDépart);
-                    DimensionVitesse = ArialFont.MeasureString(Vitesse);
-                    DimensionPosition = ArialFont.MeasureString(PositionUtilisateur.ToString() + "/" + NbVoiture.ToString());
-                    DimensionTemps = ArialFont.MeasureString(TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString());
-                    DimensionTour = ArialFont.MeasureString(PourcentageCourse.ToString("0/0"));
-                    DimensionNotif = new Vector2(300 * ÉchelleNotif, 50 * ÉchelleNotif);
-                    PositionNotif = new Vector2(Game.Window.ClientBounds.Width / 2f - DimensionNotif.X / 2f, PositionNotif.Y);
-                    DimensionMessageNotif = ArialFont.MeasureString(GetMessage(0));
-                    PositionMessageNotif = PositionNotif + new Vector2(150 * ÉchelleNotif, DimensionNotif.Y / 2f);
-                    RotationAiguille = ((Math.Abs(Convert.ToInt32(Vitesse) / Voiture.VITESSE_MAX)) * (float)2.2f) + 0.85f;//Vitesse max!
-                    if (DébuterTemps)
-                    {
-                        GestionTemps();
-                    }
-                    TempsMilliSeconde = TableauTemps[0] + TableauTemps[1] * 60 + TableauTemps[2] * 3600;
-                    TempsÉcouléDepuisMAJ = 0;
-                }
+                
+            }
 
                 base.Update(gameTime);
             }
@@ -231,72 +237,75 @@ namespace SimulationVéhicule
 
         public override void Draw(GameTime gameTime)
         {
-            if (Afficher)
+            if (CourseActive)
             {
-                GestionSprites.Draw(Accéléromètre, PositionAccéléromètre, null, Color.White, 0, new Vector2(167, 27), 0.40f, SpriteEffects.None, 0);
-                //GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse, new Color(17, 83, 133), 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.375f, SpriteEffects.None, 0);
-                //GestionSprites.Draw(Aiguille, new Vector2(103, Game.Window.ClientBounds.Height - 70), null, Color.White, RotationAiguille, new Vector2(167, 27), 0.35f, SpriteEffects.None, 0);
-
-                GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.70f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse, Color.White, 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.70f, SpriteEffects.None, 0);
-                GestionSprites.Draw(Aiguille, new Vector2(90, Game.Window.ClientBounds.Height - 24), null, Color.White, RotationAiguille, new Vector2(267, 27), 0.35f, SpriteEffects.None, 0);
-
-                GestionSprites.DrawString(ArialFont, ("POSITION"), PositionDePosition - new Vector2(12, 25) + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.35f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, ("POSITION"), PositionDePosition - new Vector2(12, 25), Color.White, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.35f, SpriteEffects.None, 0);
-
-                GestionSprites.DrawString(ArialFont, (PositionUtilisateur.ToString() + "/" + NbVoiture.ToString()), PositionDePosition + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.625f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, (PositionUtilisateur.ToString() + "/" + NbVoiture.ToString()), PositionDePosition, Color.White, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.625f, SpriteEffects.None, 0);
-
-                if (AfficherTemps)
+                if (Afficher)
                 {
-                    GestionSprites.DrawString(ArialFont, (TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString()), PositionTemps + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTemps.X / 2, DimensionTemps.Y / 2), 0.375f, SpriteEffects.None, 0);
-                    GestionSprites.DrawString(ArialFont, (TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString()), PositionTemps, Color.White, 0f, new Vector2(DimensionTemps.X / 2, DimensionTemps.Y / 2), 0.375f, SpriteEffects.None, 0);
+                    GestionSprites.Draw(Accéléromètre, PositionAccéléromètre, null, Color.White, 0, new Vector2(167, 27), 0.40f, SpriteEffects.None, 0);
+                    //GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse, new Color(17, 83, 133), 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.375f, SpriteEffects.None, 0);
+                    //GestionSprites.Draw(Aiguille, new Vector2(103, Game.Window.ClientBounds.Height - 70), null, Color.White, RotationAiguille, new Vector2(167, 27), 0.35f, SpriteEffects.None, 0);
 
+                    GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.70f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, Vitesse, PositionVitesse, Color.White, 0f, new Vector2(DimensionVitesse.X / 2, DimensionVitesse.Y / 2), 0.70f, SpriteEffects.None, 0);
+                    GestionSprites.Draw(Aiguille, new Vector2(90, Game.Window.ClientBounds.Height - 24), null, Color.White, RotationAiguille, new Vector2(267, 27), 0.35f, SpriteEffects.None, 0);
+
+                    GestionSprites.DrawString(ArialFont, ("POSITION"), PositionDePosition - new Vector2(12, 25) + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.35f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, ("POSITION"), PositionDePosition - new Vector2(12, 25), Color.White, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.35f, SpriteEffects.None, 0);
+
+                    GestionSprites.DrawString(ArialFont, (PositionUtilisateur.ToString() + "/" + NbVoiture.ToString()), PositionDePosition + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.625f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, (PositionUtilisateur.ToString() + "/" + NbVoiture.ToString()), PositionDePosition, Color.White, 0f, new Vector2(DimensionPosition.X / 2, DimensionPosition.Y / 2), 0.625f, SpriteEffects.None, 0);
+
+                    if (AfficherTemps)
+                    {
+                        GestionSprites.DrawString(ArialFont, (TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString()), PositionTemps + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTemps.X / 2, DimensionTemps.Y / 2), 0.375f, SpriteEffects.None, 0);
+                        GestionSprites.DrawString(ArialFont, (TableauTemps[2].ToString("00") + ":" + TableauTemps[1].ToString("00") + "." + TableauTemps[0].ToString("00").ToString()), PositionTemps, Color.White, 0f, new Vector2(DimensionTemps.X / 2, DimensionTemps.Y / 2), 0.375f, SpriteEffects.None, 0);
+
+                    }
+
+                    GestionSprites.DrawString(ArialFont, ("TOUR"), PositionTour - new Vector2(5, 25) + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), new Vector2(0.40f, 0.35f), SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, ("TOUR"), PositionTour - new Vector2(5, 25), Color.White, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), new Vector2(0.40f, 0.35f), SpriteEffects.None, 0);
+
+
+                    GestionSprites.DrawString(ArialFont, (ToursFait + "/" + NbTours), PositionTour + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), 0.625f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, (ToursFait + "/" + NbTours), PositionTour, Color.White, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), 0.625f, SpriteEffects.None, 0);
+
+                    GestionSprites.Draw(TableauNotification[TypeNotification], PositionNotif, null, new Color(255, 255, 255, TransparenceNotif), 0, DimensionNotif, ÉchelleNotif, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, GetMessage(0), PositionMessageNotif, new Color(0, 0, 0, TransparenceNotif), 0, DimensionNotif, ÉchelleNotif, SpriteEffects.None, 0);
+
+                    //Afficher notification si un joueur se déconnecte lors d'une partie en lan
+                    if (ModeDeJeu == 1 && DépartCourse && NbJoueursConnectés == 1)// true est si la course est commencée
+                    {//besoin d'optimisation
+                        GestionSprites.Draw(TableauNotification[3], new Vector2(Game.Window.ClientBounds.Width / 2f - (TableauNotification[3].Width * 0.4f / 2f), 25), null, Color.White, 0, DimensionNotif, 0.4f, SpriteEffects.None, 0);
+                        GestionSprites.DrawString(ArialFont, GetMessage(4), new Vector2(Game.Window.ClientBounds.Width / 2f - (TableauNotification[3].Width * 0.4f / 2f), 35) + new Vector2(150 * 0.4f, DimensionNotif.Y / 2f),
+                            Color.Black, 0, DimensionNotif, 0.4f, SpriteEffects.None, 0);
+
+                    }
+
+                    GestionSprites.DrawString(ArialFont, ÉtatDépart, PositionDépart + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionDépart.X / 2, DimensionDépart.Y / 2), 1f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(ArialFont, ÉtatDépart, PositionDépart, Color.White, 0f, new Vector2(DimensionDépart.X / 2, DimensionDépart.Y / 2), 1f, SpriteEffects.None, 0);
+
+                    //if (AfficherMessageChangementTour)
+                    //{
+                    //    if (NbTours - ToursFait != 0)
+                    //    {
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(0), PositionDépart + new Vector2(0, -50) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(0)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(0), PositionDépart + new Vector2(0, -50), Color.White, 0f, ArialFont.MeasureString(GetMessage(0)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
+
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(1), PositionDépart + new Vector2(0, 10) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(1)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(1), PositionDépart + new Vector2(0, 10), Color.White, 0f, ArialFont.MeasureString(GetMessage(1)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);    
+                    //    }
+                    //    else
+                    //    {
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(2), PositionDépart + new Vector2(0, -50) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(2)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(2), PositionDépart + new Vector2(0, -50), Color.White, 0f, ArialFont.MeasureString(GetMessage(2)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
+
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(3), PositionDépart + new Vector2(0, 10) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(3)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);
+                    //        GestionSprites.DrawString(ArialFont, GetMessage(3), PositionDépart + new Vector2(0, 10), Color.White, 0f, ArialFont.MeasureString(GetMessage(3)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);    
+                    //    }
+
+
+                    //}
                 }
-
-                GestionSprites.DrawString(ArialFont, ("TOUR"), PositionTour - new Vector2(5, 25) + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), new Vector2(0.40f, 0.35f), SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, ("TOUR"), PositionTour - new Vector2(5, 25), Color.White, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), new Vector2(0.40f, 0.35f), SpriteEffects.None, 0);
-
-
-                GestionSprites.DrawString(ArialFont, (ToursFait + "/" + NbTours), PositionTour + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), 0.625f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, (ToursFait + "/" + NbTours), PositionTour, Color.White, 0f, new Vector2(DimensionTour.X / 2, DimensionTour.Y / 2), 0.625f, SpriteEffects.None, 0);
-
-                GestionSprites.Draw(TableauNotification[TypeNotification], PositionNotif, null, new Color(255, 255, 255, TransparenceNotif), 0, DimensionNotif, ÉchelleNotif, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, GetMessage(0), PositionMessageNotif, new Color(0, 0, 0, TransparenceNotif), 0, DimensionNotif, ÉchelleNotif, SpriteEffects.None, 0);
-
-                //Afficher notification si un joueur se déconnecte lors d'une partie en lan
-                if (ModeDeJeu == 1 && DépartCourse && NbJoueursConnectés == 1)// true est si la course est commencée
-                {//besoin d'optimisation
-                    GestionSprites.Draw(TableauNotification[3], new Vector2(Game.Window.ClientBounds.Width / 2f - (TableauNotification[3].Width * 0.4f / 2f) , 25), null, Color.White, 0, DimensionNotif, 0.4f, SpriteEffects.None, 0);
-                    GestionSprites.DrawString(ArialFont, GetMessage(4), new Vector2(Game.Window.ClientBounds.Width / 2f - (TableauNotification[3].Width * 0.4f / 2f), 35) + new Vector2(150 * 0.4f, DimensionNotif.Y / 2f), 
-                        Color.Black, 0, DimensionNotif, 0.4f, SpriteEffects.None, 0);
-
-                }
-
-                GestionSprites.DrawString(ArialFont, ÉtatDépart, PositionDépart + new Vector2(1, 1), Color.Black, 0f, new Vector2(DimensionDépart.X / 2, DimensionDépart.Y / 2), 1f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(ArialFont, ÉtatDépart, PositionDépart, Color.White, 0f, new Vector2(DimensionDépart.X / 2, DimensionDépart.Y / 2), 1f, SpriteEffects.None, 0);
-
-                //if (AfficherMessageChangementTour)
-                //{
-                //    if (NbTours - ToursFait != 0)
-                //    {
-                //        GestionSprites.DrawString(ArialFont, GetMessage(0), PositionDépart + new Vector2(0, -50) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(0)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
-                //        GestionSprites.DrawString(ArialFont, GetMessage(0), PositionDépart + new Vector2(0, -50), Color.White, 0f, ArialFont.MeasureString(GetMessage(0)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
-
-                //        GestionSprites.DrawString(ArialFont, GetMessage(1), PositionDépart + new Vector2(0, 10) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(1)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);
-                //        GestionSprites.DrawString(ArialFont, GetMessage(1), PositionDépart + new Vector2(0, 10), Color.White, 0f, ArialFont.MeasureString(GetMessage(1)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);    
-                //    }
-                //    else
-                //    {
-                //        GestionSprites.DrawString(ArialFont, GetMessage(2), PositionDépart + new Vector2(0, -50) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(2)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
-                //        GestionSprites.DrawString(ArialFont, GetMessage(2), PositionDépart + new Vector2(0, -50), Color.White, 0f, ArialFont.MeasureString(GetMessage(2)) * new Vector2(0.5f, 0.5f), 1f, SpriteEffects.None, 0);
-
-                //        GestionSprites.DrawString(ArialFont, GetMessage(3), PositionDépart + new Vector2(0, 10) + new Vector2(1, 1), Color.Black, 0f, ArialFont.MeasureString(GetMessage(3)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);
-                //        GestionSprites.DrawString(ArialFont, GetMessage(3), PositionDépart + new Vector2(0, 10), Color.White, 0f, ArialFont.MeasureString(GetMessage(3)) * new Vector2(0.5f, 0.5f), 0.5f, SpriteEffects.None, 0);    
-                //    }
-
-
-                //}
             }
 
             base.Draw(gameTime);

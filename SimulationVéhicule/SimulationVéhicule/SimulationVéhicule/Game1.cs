@@ -96,7 +96,7 @@ namespace SimulationVéhicule
             Accueil = Content.Load<Texture2D>("Textures/Accueil");
 
             //Course
-            CourseActive = true;
+            CourseActive = false;
             CibleYCaméra = 0;
             VueArrière = 1;
             TableauPositionCaméra = new Vector3[6];
@@ -109,7 +109,11 @@ namespace SimulationVéhicule
 
             Components.Add(CaméraJeu);
 
-            ModeDeJeu = 1;
+
+            ModeDeJeu = 0;
+            CréerUneCourse(2, 0);
+            Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
+
             if (CourseActive)
             {
                 CréerUneCourse(2, 0);
@@ -123,6 +127,9 @@ namespace SimulationVéhicule
             GestionInput = new InputManager(this);
 
             Components.Add(GestionInput);
+
+            Services.AddService(typeof(Caméra), CaméraJeu);
+            Services.AddService(typeof(GUI), Interface);
 
             GestionnaireDeFonts = new RessourcesManager<SpriteFont>(this, "Fonts");
             GestionnaireDeTextures = new RessourcesManager<Texture2D>(this, "Textures");
@@ -140,6 +147,8 @@ namespace SimulationVéhicule
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
             Services.AddService(typeof(InputManager), GestionInput);
+            Services.AddService(typeof(bool), CourseActive);
+            Services.AddService(typeof(int), IDVoitureUtilisateur);
             base.Initialize();
         }
 
@@ -151,10 +160,18 @@ namespace SimulationVéhicule
             if (TempsÉcouléDepuisMAJ >= INTERVALLE_MAJ_STANDARD)
             {
                 CaméraJeu.CréerPointDeVue();
-                if (CourseActive && !MenuActif)
+                if (CourseActive && !MenuActif && LaCourse != null)
                 {
                     GestionOrientationCaméra();//Si course est activée
                 }
+
+                if (MenuActif && !CourseActive && GestionInput.EstEnfoncée(Keys.G))
+                {
+                    MenuActif = false;
+                    CourseActive = true;
+                    Carte.CourseActive = true;
+                }
+
                 TempsÉcouléDepuisMAJ = 0;
             }
 
@@ -166,6 +183,7 @@ namespace SimulationVéhicule
                 LaCourse.NbFranchis[1] = LeClient.NbFranchisAdversaire;
             }
 
+            Window.Title = Carte.CourseActive.ToString();
             //Window.Title = LaCourse.NbFranchis[0].ToString() + " - " + LaCourse.NbFranchis[1].ToString() + " - " + (LaPiste.Count() * NbTours * 2).ToString() + " - " + LaCourse.CourseTerminée.ToString();
             base.Update(gameTime);
         }
@@ -177,7 +195,7 @@ namespace SimulationVéhicule
             DebugShapeRenderer.Draw(gameTime, CaméraJeu.Vue, CaméraJeu.Projection);
             if (!CourseActive && !MenuActif)
             {
-                GestionSprites.Draw(Accueil, new Vector2(0, 0), null, Color.White, 0, new Vector2(0,0), new Vector2(Window.ClientBounds.Width / (float)Accueil.Width, Window.ClientBounds.Height
+                GestionSprites.Draw(Accueil, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), new Vector2(Window.ClientBounds.Width / (float)Accueil.Width, Window.ClientBounds.Height
                 / (float)Accueil.Height), SpriteEffects.None, 0);
                 if (Keyboard.GetState().GetPressedKeys().Length > 0)
                 {
@@ -205,7 +223,7 @@ namespace SimulationVéhicule
         void CréerUneCourse(int nbTours, int piste)
         {
             CaméraMobile = false;
-            CourseActive = true; 
+            //CourseActive = true; 
 
             PositionUtilisateur = 1;
             IDVoitureUtilisateur = 0;
@@ -247,12 +265,11 @@ namespace SimulationVéhicule
 
             Components.Add(LaCourse);
 
-            Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
+            //Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
             Components.Add(Interface);
 
-            Services.AddService(typeof(Caméra), CaméraJeu);
-            Services.AddService(typeof(GUI), Interface);
-            Services.AddService(typeof(int), IDVoitureUtilisateur);
+            //Services.AddService(typeof(GUI), Interface);
+            //Services.AddService(typeof(int), IDVoitureUtilisateur);
         }
 
         void GestionOrientationCaméra()

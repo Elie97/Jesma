@@ -55,6 +55,8 @@ namespace SimulationVéhicule
 
         List<Vector3[]> ListePointÉtape { get; set; }
 
+        bool CourseActive { get; set; }
+
         public BoundingBox Box
         {
             get
@@ -270,27 +272,23 @@ namespace SimulationVéhicule
 
         public override void Draw(GameTime gameTime)
         {
-            EffetDeBase.World = GetMonde();
-            EffetDeBase.View = CaméraJeu.Vue;
-            EffetDeBase.Projection = CaméraJeu.Projection;
-            foreach (EffectPass passeEffet in EffetDeBase.CurrentTechnique.Passes)
+            CourseActive = (bool)Game.Services.GetService(typeof(bool));
+            if (CourseActive)
             {
-                passeEffet.Apply();
-                GraphicsDevice.DrawUserPrimitives<VertexPositionTexture>(PrimitiveType.TriangleList, Sommets, 0, NbTriangles);
+                EffetDeBase.World = GetMonde();
+                EffetDeBase.View = CaméraJeu.Vue;
+                EffetDeBase.Projection = CaméraJeu.Projection;
+                foreach (EffectPass passeEffet in EffetDeBase.CurrentTechnique.Passes)
+                {
+                    passeEffet.Apply();
+                    GraphicsDevice.DrawUserPrimitives<VertexPositionTexture>(PrimitiveType.TriangleList, Sommets, 0, NbTriangles);
 
+                }
+                foreach (BoundingBox x in BoxÉtape)
+                {
+                    DebugShapeRenderer.AddBoundingBox(x, CouleurCheckPoint);
+                }
             }
-            //DebugShapeRenderer.AddBoundingBox(Box, Color.Wheat);
-            foreach (BoundingBox x in BoxÉtape)
-            {
-                DebugShapeRenderer.AddBoundingBox(x, CouleurCheckPoint);
-            }
-            //DebugShapeRenderer.AddBoundingBox(BoxComplet, Color.Black);
-            //DebugShapeRenderer.AddBoundingBox(BoxDroite, Color.YellowGreen);
-            //DebugShapeRenderer.AddBoundingBox(BoxGauche, Color.YellowGreen);
-           //DebugShapeRenderer.AddBoundingBox(Box, Color.Wheat);
-            //DebugShapeRenderer.AddBoundingBox(Box, Color.Blue);
-            //DebugShapeRenderer.AddBoundingSphere(Sphere, Color.Yellow);
-            //DebugShapeRenderer.AddBoundingSphere(new BoundingSphere(new Vector3(Position.X, Position.Y, Position.Z), (Étendue.X / 2)), Color.Green);
             base.Draw(gameTime);
         }
 

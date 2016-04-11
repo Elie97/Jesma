@@ -28,3 +28,9 @@ C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\Compos
 C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\Composants\obj\x86\Debug\Composants.dll
 C:\Users\201448183\Documents\GitHub\SimulationVoiture\SimulationVéhicule\Composants\obj\x86\Debug\Composants.pdb
 C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\Composants\obj\x86\Debug\Composants.csprojResolveAssemblyReference.cache
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\bin\x86\Debug\Composants.dll
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\bin\x86\Debug\Composants.pdb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\obj\x86\Debug\Composants.csprojResolveAssemblyReference.cache
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\obj\x86\Debug\Composants.dll
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\Composants\obj\x86\Debug\Composants.pdb

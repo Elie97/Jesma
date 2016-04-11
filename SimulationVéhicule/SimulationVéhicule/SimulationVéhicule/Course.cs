@@ -109,6 +109,8 @@ namespace SimulationVéhicule
 
         public bool CourseTerminée { get; set; }
 
+        bool CourseActive { get; set; }
+
 
 
         public Course(Game game, int nbTours, int nbVoiture, List<Sol> laPiste, List<Voiture> listeVoiture, CaméraSubjective caméra, float intervalle, int piste, int modeDeJeu)
@@ -251,146 +253,153 @@ namespace SimulationVéhicule
 
         public override void Update(GameTime gameTime)
         {
-            GérerClavier();
-            TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds; //Mettre partout?
-            TempsÉcouléDepuisMAJ += TempsÉcoulé;
-            if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
+            CourseActive = (bool)Game.Services.GetService(typeof(bool));
+            if (CourseActive)
             {
-                if (ModeDeJeu == 1 || Cinématique())
+                GérerClavier();
+                TempsÉcoulé = (float)gameTime.ElapsedGameTime.TotalSeconds; //Mettre partout?
+                TempsÉcouléDepuisMAJ += TempsÉcoulé;
+                if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
                 {
-                    Introduction.Stop();
-                    Interface.Afficher = true;
-                    CaméraJeu.ChangerTypeCaméra(false);
-                    AfficherTexte = false;
-
-                    if (DépartCourse)
+                    if (ModeDeJeu == 1 || Cinématique())
                     {
-                        ListeVoiture[IDVoitureUtilisateur].Controle = true;
-                        //ListeVoiture[1].AI();
+                        Introduction.Stop();
+                        Interface.Afficher = true;
+                        CaméraJeu.ChangerTypeCaméra(false);
+                        AfficherTexte = false;
+
+                        if (DépartCourse)
+                        {
+                            ListeVoiture[IDVoitureUtilisateur].Controle = true;
+                            //ListeVoiture[1].AI();
+
+                        }
+                        else
+                        {
+                            AfficherDécompte = true;
+                            TempsDécompte++;
+                            //TempsÉcouléDepuisMAJ = 0;
+                            if (TempsDécompte >= 450)
+                            {
+                                DépartCourse = true;
+                            }
+                        }
+
+                        GestionAnimationFinCourse();
+
+                        if (TempsDécompte >= 600)
+                        {
+                            AfficherDécompte = false;
+                        }
+
+
+                        //Gestion Des Collision
+                        //for (int i = 1; i < ListeVoiture.Count(); i++)
+                        //{
+                        //    //ListeVoiture[IDVoitureUtilisateur].GestionCollisionVoiture(ListeVoiture[i]);
+                        //}
+                        ListeVoiture[IDVoitureUtilisateur].GestionCollisionVoiture(ListeVoiture[1]);
+
+                        //Gestion de la caméra
+                        //GestionOrientationCaméra(); //Dans un counter
+
+                        //Gestion des checks points
+                        GestionDesCheckPoints();
+
+                        int nbCheckPointParTour = LaPiste.Count() * Sol.NB_CHECK_POINT;
+                        PositionVoiture = new List<int[]>();
 
                     }
                     else
                     {
-                        AfficherDécompte = true;
-                        TempsDécompte++;
-                        //TempsÉcouléDepuisMAJ = 0;
-                        if (TempsDécompte >= 450)
+                        ListeVoiture[IDVoitureUtilisateur].Controle = false;
+                        Interface.Afficher = false;
+                        AfficherTexte = true;
+                        PositionNomCarte = AnimationTexteVersHaut(Game.Window.ClientBounds.Height - 100, PositionNomCarte, 2f);
+                    }
+
+                    GestionCheckPoints();
+
+                    PositionVoiture = PositionVoiture.OrderByDescending(x => x[1]).ToList();
+
+                    GestionPositionÉgale();
+
+                    string d = "";
+                    foreach (bool x in ListeCheckPoint[IDVoitureUtilisateur])
+                    {
+                        d += " - " + x;
+                    }
+
+                    for (int i = 0; i < LaPiste.Count(); i++)
+                    {
+                        for (int j = 0; j < LaPiste[i].BoxÉtape.Count(); j++)
                         {
-                            DépartCourse = true;
+                            if (ListeCheckPoint[IDVoitureUtilisateur][i + i + j] == true)
+                            {
+                                LaPiste[i].CouleurCheckPoint = Color.Green;
+                            }
                         }
                     }
 
-                    GestionAnimationFinCourse();
 
-                    if (TempsDécompte >= 600)
-                    {
-                        AfficherDécompte = false;
-                    }
+                    GestionCollisionAvecPiste();
 
+                    GestionCourseContreLaMontre();
 
-                    //Gestion Des Collision
-                    //for (int i = 1; i < ListeVoiture.Count(); i++)
-                    //{
-                    //    //ListeVoiture[IDVoitureUtilisateur].GestionCollisionVoiture(ListeVoiture[i]);
-                    //}
-                    ListeVoiture[IDVoitureUtilisateur].GestionCollisionVoiture(ListeVoiture[1]);
+                    Interface.UpdateGUI((int)ListeVoiture[IDVoitureUtilisateur].PixelToKMH(ListeVoiture[IDVoitureUtilisateur].Vitesse),
+                            PositionUtilisateur, CheckPointParVoiture[IDVoitureUtilisateur],
+                            ToursFait[IDVoitureUtilisateur]);
 
-                    //Gestion de la caméra
-                    //GestionOrientationCaméra(); //Dans un counter
-
-                    //Gestion des checks points
-                    GestionDesCheckPoints();
-
-                    int nbCheckPointParTour = LaPiste.Count() * Sol.NB_CHECK_POINT;
-                    PositionVoiture = new List<int[]>();
-
+                    TempsÉcouléDepuisMAJ = 0;
                 }
-                else
+
+                if (GestionInput.EstNouvelleTouche(Keys.Space) && !DépartCourse)
                 {
-                    ListeVoiture[IDVoitureUtilisateur].Controle = false;
-                    Interface.Afficher = false;
-                    AfficherTexte = true;
-                    PositionNomCarte = AnimationTexteVersHaut(Game.Window.ClientBounds.Height - 100, PositionNomCarte, 2f);
+                    ForcerArrêt = true;
+                    CaméraJeu.Direction = new Vector3(0, 0, 0) - CaméraJeu.Position;
                 }
 
-                GestionCheckPoints();
-
-                PositionVoiture = PositionVoiture.OrderByDescending(x => x[1]).ToList();
-
-                GestionPositionÉgale();
-
-                string d = "";
-                foreach (bool x in ListeCheckPoint[IDVoitureUtilisateur])
-                {
-                    d += " - " + x;
-                }
-
-                for (int i = 0; i < LaPiste.Count(); i++)
-                {
-                    for (int j = 0; j < LaPiste[i].BoxÉtape.Count(); j++)
-                    {
-                        if (ListeCheckPoint[IDVoitureUtilisateur][i + i + j] == true)
-                        {
-                            LaPiste[i].CouleurCheckPoint = Color.Green;
-                        }
-                    }
-                }
-
-
-                GestionCollisionAvecPiste();
-
-                GestionCourseContreLaMontre();
-
-                Interface.UpdateGUI((int)ListeVoiture[IDVoitureUtilisateur].PixelToKMH(ListeVoiture[IDVoitureUtilisateur].Vitesse),
-                        PositionUtilisateur, CheckPointParVoiture[IDVoitureUtilisateur],
-                        ToursFait[IDVoitureUtilisateur]);
-
-                TempsÉcouléDepuisMAJ = 0;
+                Interface.GetDépartCourse(DépartCourse);
             }
-
-            if (GestionInput.EstNouvelleTouche(Keys.Space) && !DépartCourse)
-            {
-                ForcerArrêt = true;
-                CaméraJeu.Direction = new Vector3(0, 0, 0) - CaméraJeu.Position;
-            }
-
-            Interface.GetDépartCourse(DépartCourse);
-
+            //Game.Window.Title = CourseActive.ToString();
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            if (AfficherTexte)
+            if (CourseActive)
             {
-                GestionSprites.DrawString(Bebas, GetMessage(0), PositionNomCarte, Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-                GestionSprites.DrawString(Bebas, GetMessage(1), PositionNomCarte + new Vector2(0, 50), Color.White, 0, new Vector2(0, 0), 0.3f, SpriteEffects.None, 0);
-            }
-            //afficher différence temps pour course contre la montre
-            if (AfficherDécompte)
-            {
-                Décompte();
-                GestionSprites.Draw(CountdownImage, new Vector2(Game.Window.ClientBounds.Width/2, Game.Window.ClientBounds.Height/4), null, Color.White, 0,new Vector2(CountdownImage.Width/2, CountdownImage.Height/2), 0.75f, SpriteEffects.None, 0);
-            }
-
-            if (AfficherÉcranNoir)
-            {
-                GestionSprites.Draw(ÉcranNoir, new Vector2(0,0), null, new Color(255, 255, 255, 0.5f), 0, new Vector2(0,0), 100f, SpriteEffects.None, 0);
-                if (AfficherConfettis)
+                if (AfficherTexte)
                 {
-                    if (ÉchelleConfettis < 1f)
+                    GestionSprites.DrawString(Bebas, GetMessage(0), PositionNomCarte, Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+                    GestionSprites.DrawString(Bebas, GetMessage(1), PositionNomCarte + new Vector2(0, 50), Color.White, 0, new Vector2(0, 0), 0.3f, SpriteEffects.None, 0);
+                }
+                //afficher différence temps pour course contre la montre
+                if (AfficherDécompte)
+                {
+                    Décompte();
+                    GestionSprites.Draw(CountdownImage, new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 4), null, Color.White, 0, new Vector2(CountdownImage.Width / 2, CountdownImage.Height / 2), 0.75f, SpriteEffects.None, 0);
+                }
+
+                if (AfficherÉcranNoir)
+                {
+                    GestionSprites.Draw(ÉcranNoir, new Vector2(0, 0), null, new Color(255, 255, 255, 0.5f), 0, new Vector2(0, 0), 100f, SpriteEffects.None, 0);
+                    if (AfficherConfettis)
                     {
-                        ÉchelleConfettis += 0.01f;
-                    }
-                    GestionSprites.Draw(Confettis, new Vector2(Game.Window.ClientBounds.Width/2, Game.Window.ClientBounds.Height/2), null, Color.White, 0,new Vector2(Confettis.Width/2, Confettis.Height/2), ÉchelleConfettis, SpriteEffects.None, 0);
-                    GestionSprites.Draw(Trophée, new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 2) + new Vector2(0, 50), null, Color.White, 0, new Vector2(Trophée.Width / 2, Trophée.Height / 2), 1.0f, SpriteEffects.None, 0);
-                    GestionSprites.DrawString(Bebas120, "VICTOIRE!", new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 4), Color.White, 0, Bebas120.MeasureString("VICTOIRE!") / 2f, 1.0f, SpriteEffects.None, 0);
+                        if (ÉchelleConfettis < 1f)
+                        {
+                            ÉchelleConfettis += 0.01f;
+                        }
+                        GestionSprites.Draw(Confettis, new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 2), null, Color.White, 0, new Vector2(Confettis.Width / 2, Confettis.Height / 2), ÉchelleConfettis, SpriteEffects.None, 0);
+                        GestionSprites.Draw(Trophée, new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 2) + new Vector2(0, 50), null, Color.White, 0, new Vector2(Trophée.Width / 2, Trophée.Height / 2), 1.0f, SpriteEffects.None, 0);
+                        GestionSprites.DrawString(Bebas120, "VICTOIRE!", new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 4), Color.White, 0, Bebas120.MeasureString("VICTOIRE!") / 2f, 1.0f, SpriteEffects.None, 0);
 
-                }
-                else
-                {
-                    GestionSprites.DrawString(Bebas120, "DÉFAITE!", new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 4), Color.White, 0, Bebas120.MeasureString("VICTOIRE!") / 2f, 1.0f, SpriteEffects.None, 0);
-                }
+                    }
+                    else
+                    {
+                        GestionSprites.DrawString(Bebas120, "DÉFAITE!", new Vector2(Game.Window.ClientBounds.Width / 2, Game.Window.ClientBounds.Height / 4), Color.White, 0, Bebas120.MeasureString("VICTOIRE!") / 2f, 1.0f, SpriteEffects.None, 0);
+                    }
+                }   
             }
             base.Draw(gameTime);
         }

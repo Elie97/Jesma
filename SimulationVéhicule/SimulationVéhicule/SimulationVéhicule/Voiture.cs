@@ -103,6 +103,8 @@ namespace SimulationVéhicule
 
         public int NbFranchis { get; set; }
 
+        bool CourseActive { get; set; }
+
         public Voiture(Game jeu, String nomModèle, float échelleInitiale, Vector3 rotationInitiale, Vector3 positionInitiale, float intervalleMAJ, bool user, bool afficher)
             : base(jeu)
         {
@@ -202,47 +204,43 @@ namespace SimulationVéhicule
 
         public override void Draw(GameTime gameTime)
         {
-            if (Afficher)
+            if (CourseActive)
             {
-                //Game.Window.Title = Modèle.Bones["Mesh187"].Name;
-                foreach (ModelMesh Mesh in Modèle.Meshes)
+                if (Afficher)
                 {
-                    foreach (BasicEffect Effect in Mesh.Effects)
-                    {
-                        Effect.Projection = CaméraJeu.Projection;
-                        Effect.View = CaméraJeu.Vue;
-                        Effect.World = TransformationsModèle[Mesh.ParentBone.Index] * GetMonde();
-                        Effect.LightingEnabled = true;
-                        Effect.AmbientLightColor = new Vector3(0.2f, 0.2f, 0.2f);
-                        //if (Mesh.Name == Modèle.Bones["Mesh187"].Name)
-                        //{
-                        //    Game.Window.Title = Mesh.Name;
-                        //    Effect.AmbientLightColor = new Vector3(1f, 1f, 1f);
-                        //    //Effect.AmbientLightColor = new Vector3(1, 1, 1);
-                        //}
-                    }
-                    Mesh.Draw();
-                }
-
-                for (int i = 0; i < Roues.Length; i++)
-                {
-                    foreach (ModelMesh Mesh in Roues[i].Meshes)
+                    foreach (ModelMesh Mesh in Modèle.Meshes)
                     {
                         foreach (BasicEffect Effect in Mesh.Effects)
                         {
                             Effect.Projection = CaméraJeu.Projection;
                             Effect.View = CaméraJeu.Vue;
-                            Effect.World = TransformationsRoues[i][Mesh.ParentBone.Index] * GetMondeRoues(i);
-                            Effect.EnableDefaultLighting();
+                            Effect.World = TransformationsModèle[Mesh.ParentBone.Index] * GetMonde();
+                            Effect.LightingEnabled = true;
+                            Effect.AmbientLightColor = new Vector3(0.2f, 0.2f, 0.2f);
                         }
                         Mesh.Draw();
                     }
-                }
 
-                if (GestionInput.EstEnfoncée(Keys.C))
-                {
-                    Info();//ToDELETE
-                }
+                    for (int i = 0; i < Roues.Length; i++)
+                    {
+                        foreach (ModelMesh Mesh in Roues[i].Meshes)
+                        {
+                            foreach (BasicEffect Effect in Mesh.Effects)
+                            {
+                                Effect.Projection = CaméraJeu.Projection;
+                                Effect.View = CaméraJeu.Vue;
+                                Effect.World = TransformationsRoues[i][Mesh.ParentBone.Index] * GetMondeRoues(i);
+                                Effect.EnableDefaultLighting();
+                            }
+                            Mesh.Draw();
+                        }
+                    }
+
+                    if (GestionInput.EstEnfoncée(Keys.C))
+                    {
+                        Info();//ToDELETE
+                    }
+                } 
             }
 
 
@@ -259,72 +257,76 @@ namespace SimulationVéhicule
 
         public override void Update(GameTime gameTime)
         {
-            TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
+            CourseActive = (bool)Game.Services.GetService(typeof(bool));
+            if (CourseActive)
             {
-
-                if (User)
+                TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (TempsÉcouléDepuisMAJ >= IntervalleMAJ)
                 {
-                    //Game.Window.Title = Rotation.ToString();
-                    if (Controle)
+
+                    if (User)
                     {
-                        if (GestionInput.EstEnfoncée(Keys.W) && Vitesse >= 0 && AvancePossible && AvancePossiblePiste)
+                        //Game.Window.Title = Rotation.ToString();
+                        if (Controle)
                         {
-                            if (GestionInput.EstEnfoncée(Keys.E))
+                            if (GestionInput.EstEnfoncée(Keys.W) && Vitesse >= 0 && AvancePossible && AvancePossiblePiste)
                             {
-                                EnAvant = true;
-                                if (AccélérationPossible)
+                                if (GestionInput.EstEnfoncée(Keys.E))
                                 {
-                                    Accélération(EnAvant);
+                                    EnAvant = true;
+                                    if (AccélérationPossible)
+                                    {
+                                        Accélération(EnAvant);
+                                    }
                                 }
+                                Avance();
                             }
-                            Avance();
-                        }
-                        else if (GestionInput.EstEnfoncée(Keys.S) && Vitesse <= 0 && ReculePossiblePiste)
-                        {
-                            if (GestionInput.EstEnfoncée(Keys.E))
+                            else if (GestionInput.EstEnfoncée(Keys.S) && Vitesse <= 0 && ReculePossiblePiste)
                             {
-                                EnAvant = false;
-                                if (AccélérationPossible)
+                                if (GestionInput.EstEnfoncée(Keys.E))
                                 {
-                                    Accélération(EnAvant);
+                                    EnAvant = false;
+                                    if (AccélérationPossible)
+                                    {
+                                        Accélération(EnAvant);
+                                    }
                                 }
+                                Avance();
                             }
-                            Avance();
-                        }
-                        else
-                        {
-                            Décélération(EnAvant);
-                            Avance();
-                        }
-                        if (Vitesse != 0)
-                        {
-                            GestionRotationVoiture();
-                        }
-                        if (GestionInput.EstEnfoncée(Keys.Tab))
-                        {
-                            Freinage();
-                        }
+                            else
+                            {
+                                Décélération(EnAvant);
+                                Avance();
+                            }
+                            if (Vitesse != 0)
+                            {
+                                GestionRotationVoiture();
+                            }
+                            if (GestionInput.EstEnfoncée(Keys.Tab))
+                            {
+                                Freinage();
+                            }
 
-                        if (Position.Y <= 0)
-                        {
-                            Temps = 0;
-                            Position = new Vector3(Position.X, 0, Position.Z);
-                        }
-                        //else
-                        //{
-                        //    GetHauteur();
-                        //}
+                            if (Position.Y <= 0)
+                            {
+                                Temps = 0;
+                                Position = new Vector3(Position.X, 0, Position.Z);
+                            }
+                            //else
+                            //{
+                            //    GetHauteur();
+                            //}
 
-                        PitchAndSound();
+                            PitchAndSound();
+                        }
                     }
-                }
 
-                CalculerMonde();
-                CreateBoundingBox();
-                TempsÉcouléDepuisMAJ = 0;
-            }
-            Radio();   
+                    CalculerMonde();
+                    CreateBoundingBox();
+                    TempsÉcouléDepuisMAJ = 0;
+                }
+                Radio();    
+            } 
             base.Update(gameTime);
         }
 
