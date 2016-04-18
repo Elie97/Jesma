@@ -11,7 +11,7 @@
       <Time>2016-04-11T12:43:54.7260292-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Key>
-        <Value>2016-04-11T13:01:41.7037319-04:00</Value>
+        <Value>2016-04-18T12:41:06.670401-04:00</Value>
       </Dependency>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
@@ -29,7 +29,7 @@
       <Time>2016-04-11T12:43:54.6960622-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\MustangGT500_0.xml</Key>
-        <Value>2016-04-11T13:01:44.2465319-04:00</Value>
+        <Value>2016-04-18T12:41:06.7944878-04:00</Value>
       </Dependency>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
@@ -47,7 +47,7 @@
       <Time>2016-04-11T12:43:54.9407927-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\tank_0.xml</Key>
-        <Value>2016-04-11T13:01:45.8595319-04:00</Value>
+        <Value>2016-04-18T12:41:06.8445228-04:00</Value>
       </Dependency>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Request>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Request>
@@ -62,7 +62,7 @@
       <Time>2016-04-11T12:43:54.5462272-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Audi R8_0.xml</Key>
-        <Value>2016-04-11T13:01:55.7099319-04:00</Value>
+        <Value>2016-04-18T12:41:06.4762652-04:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -75,7 +75,7 @@
       <Time>2016-04-11T12:43:54.7320226-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Pneu_0.xml</Key>
-        <Value>2016-04-11T13:01:57.0847319-04:00</Value>
+        <Value>2016-04-18T12:41:06.8034941-04:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -88,7 +88,7 @@
       <Time>2016-04-11T12:43:54.5721986-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Ciel2_0.xml</Key>
-        <Value>2016-04-11T13:01:57.2095319-04:00</Value>
+        <Value>2016-04-18T12:41:06.5673289-04:00</Value>
       </Dependency>
       <Request>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\SkyDomeTexture_0.xnb</Request>
     </Item>
@@ -102,7 +102,7 @@
       <Time>2016-04-11T12:43:54.558214-04:00</Time>
       <Dependency>
         <Key>obj\x86\Debug\Models\Bridge_0.xml</Key>
-        <Value>2016-04-11T13:01:58.1767319-04:00</Value>
+        <Value>2016-04-18T12:41:06.5613247-04:00</Value>
       </Dependency>
     </Item>
     <Item>
@@ -400,7 +400,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeDépart.xnb</Output>
-      <Time>2016-04-11T12:43:56.8367049-04:00</Time>
+      <Time>2016-04-18T12:41:06.0939978-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\grass.dds</Source>
@@ -481,7 +481,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale.xnb</Output>
-      <Time>2016-04-11T12:43:56.8436972-04:00</Time>
+      <Time>2016-04-18T12:41:06.0969999-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\acceleration.wav</Source>
@@ -821,6 +821,78 @@
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Bridge_0.xml</Output>
       <Time>2016-04-11T12:43:54.558214-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\input.jpg</Source>
+      <Name>Textures\input</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\input.xnb</Output>
+      <Time>2016-04-11T12:43:56.6549051-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\inputManette.jpg</Source>
+      <Name>Textures\inputManette</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\inputManette.xnb</Output>
+      <Time>2016-04-18T12:41:06.0909957-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\routeSale2.jpg</Source>
+      <Name>Textures\routeSale2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale2.xnb</Output>
+      <Time>2016-04-18T12:41:06.1010027-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest5.png</Source>
+      <Name>Textures\CarteTest5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest5.xnb</Output>
+      <Time>2016-04-18T12:41:06.0859922-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\frein.wav</Source>
+      <Name>Sounds\frein</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\frein.xnb</Output>
+      <Time>2016-04-18T12:41:06.0849915-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\collisionBordure.wav</Source>
+      <Name>Sounds\collisionBordure</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionBordure.xnb</Output>
+      <Time>2016-04-18T12:41:06.0769859-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\collisionVoiture.wav</Source>
+      <Name>Sounds\collisionVoiture</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionVoiture.xnb</Output>
+      <Time>2016-04-18T12:41:06.0809887-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Canyon2.png</Source>
+      <Name>Textures\Canyon2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Canyon2.xnb</Output>
+      <Time>2016-04-18T13:13:16.9059704-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

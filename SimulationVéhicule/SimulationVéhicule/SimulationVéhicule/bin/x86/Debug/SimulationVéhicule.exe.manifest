@@ -87,26 +87,26 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>mWiz3sZg4GLmPwCNprAhUr1U+kw=</dsig:DigestValue>
+        <dsig:DigestValue>fP7Yo4rXYY59hDsTkU/iXzTU55Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Content\effects.xnb" size="14956">
+  <file name="Content\effects.xnb" size="15004">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>EGvYldgCpAOB10zT9JRI9UGsJ/c=</dsig:DigestValue>
+      <dsig:DigestValue>0ixgHZCgD3omC7WMxGuNUIuUCYU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Content\Fonts\Arial.xnb" size="2116571">
+  <file name="Content\Fonts\Arial.xnb" size="1936347">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>itY1lvH5AfPLK4xdsB29o/L5Lnk=</dsig:DigestValue>
+      <dsig:DigestValue>EiD/RFkTkp5uU03TAr351r5wHJU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Fonts\Bebas.xnb" size="228315">
@@ -530,6 +530,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>PcHhcP5lHNATspxAvXdEKOroUpw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Textures\Canyon2.xnb" size="264383">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>4qB9dauq7+bwiyVQlbkgww9O340=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Textures\CarteTest.xnb" size="264383">

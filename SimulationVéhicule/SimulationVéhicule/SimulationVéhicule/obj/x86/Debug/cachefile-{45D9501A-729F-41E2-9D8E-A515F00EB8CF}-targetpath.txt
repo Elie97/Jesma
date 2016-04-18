@@ -80,5 +80,6 @@ Content\Textures\CarteTest5.xnb
 Content\Sounds\frein.xnb
 Content\Sounds\collisionBordure.xnb
 Content\Sounds\collisionVoiture.xnb
+Content\Textures\Canyon2.xnb
 Content\Fonts\Bebas.xnb
 Content\Fonts\Bebas120.xnb

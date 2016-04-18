@@ -120,7 +120,7 @@ namespace SimulationVéhicule
             Components.Add(CaméraJeu);
 
 
-            ModeDeJeu = 0;
+            ModeDeJeu = 1;
             CréerUneCourse(2, 0);
             Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
             Components.Add(Interface);
@@ -184,12 +184,12 @@ namespace SimulationVéhicule
             }
 
 
-            if (MenuActif && !ImageToucheActive && GestionInput.EstEnfoncée(Keys.G) && CoursePeutCommencer)
+            if (MenuActif && !ImageToucheActive && GestionInput.EstEnfoncée(Keys.G))
             {
                 MenuActif = false;
                 ImageToucheActive = true;
             }
-            if (ImageToucheActive && !CourseActive && GestionInput.EstEnfoncée(Keys.H))
+            if (ImageToucheActive && !CourseActive && GestionInput.EstEnfoncée(Keys.H) && CoursePeutCommencer)
             {
                 ImageToucheActive = false;
                 //Interface.CourseActive = true;
@@ -215,7 +215,7 @@ namespace SimulationVéhicule
                 LaCourse.NbFranchis[1] = LeClient.NbFranchisAdversaire;
             }
 
-            Window.Title = MenuActif.ToString() + CourseActive.ToString();
+            Window.Title = NbJoueurConnectés.ToString() + " - " + MenuActif.ToString();
             //Window.Title = LaCourse.NbFranchis[0].ToString() + " - " + LaCourse.NbFranchis[1].ToString() + " - " + (LaPiste.Count() * NbTours * 2).ToString() + " - " + LaCourse.CourseTerminée.ToString();
             base.Update(gameTime);
         }
@@ -281,7 +281,7 @@ namespace SimulationVéhicule
             {
                 //Carte = new Terrain(this, 1f, Vector3.Zero, new Vector3(0, -1258 / 2f, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest3", "grass", 5, INTERVALLE_MAJ_STANDARD, CaméraJeu);
                 //Carte = new LeTerrain(this, 1f, Vector3.Zero, new Vector3(0, -1285 / 2f, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest3", "DétailsTerrain2", 5, INTERVALLE_MAJ_STANDARD);
-                Carte = new LeTerrain2(this, 1f, Vector3.Zero, new Vector3(0, -630, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest5", "DétailsTerrain2", 7, INTERVALLE_MAJ_STANDARD);
+                Carte = new LeTerrain2(this, 1f, Vector3.Zero, new Vector3(0, -630, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "Canyon2", "DétailsTerrain2", 7, INTERVALLE_MAJ_STANDARD);
 
             }
             LaPiste = new List<Sol>();

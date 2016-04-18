@@ -574,10 +574,18 @@ namespace SimulationVéhicule
             {
                 //nom de la carte
                 msg = "\"Espace\" pour continuer";
+                if (false)
+                {
+                    msg = "\"A\" pour continuer";
+                }
             }
             else if(message == 2)
             {
                 msg = "Appuyer sur R pour vous replacer";
+                if (false)
+                {
+                    msg = "Appuyer sur B pour vous replacer";
+                }
             }
             return msg;
         }
@@ -877,15 +885,12 @@ namespace SimulationVéhicule
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1000, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-800, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-600, 0, 2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-500, 0, 2600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 2900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 3100), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-400, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-               // LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-300, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(0, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(100, 0, 3200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(400, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(600, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
@@ -896,53 +901,50 @@ namespace SimulationVéhicule
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1600, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1800, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2000, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(MathHelper.Pi / 32f, 0, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 3000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2000), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1800), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1600), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1400), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1200), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 0), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -1000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1100), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1300), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2300, 0, -2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1900, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1700, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(900, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(700, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -900), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1100), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, MathHelper.PiOver2, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1300), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2400, 0, -2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2400, 0, -2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2000, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1800, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1600, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1000, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(800, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(600, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(0, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
@@ -967,10 +969,7 @@ namespace SimulationVéhicule
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, 100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, -1, 200), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(-1800, 0, 300), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1500, 0, 500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
-                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1700, 0, 500), new Vector2(200, 100), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1800, 0, 500), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
                 LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));

@@ -235,7 +235,6 @@ C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicul
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\snow.xnb
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\rock.xnb
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\sand.xnb
-C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\map.xnb
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest4.xnb
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\testterraintexture.xnb
 C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifPerteConnection.xnb
@@ -375,3 +374,11 @@ C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\Si
 C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\frein.xnb
 C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionBordure.xnb
 C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionVoiture.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\input.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\inputManette.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale2.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest5.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\frein.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionBordure.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionVoiture.xnb
+C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Canyon2.xnb
