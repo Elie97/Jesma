@@ -73,5 +73,12 @@ Content\Models\_Pool_01_0.xnb
 Content\Models\engine_diff_tex_0.xnb
 Content\Models\turret_alt_diff_tex_0.xnb
 Content\Textures\SkyDomeTexture_0.xnb
+Content\Textures\input.xnb
+Content\Textures\inputManette.xnb
+Content\Textures\routeSale2.xnb
+Content\Textures\CarteTest5.xnb
+Content\Sounds\frein.xnb
+Content\Sounds\collisionBordure.xnb
+Content\Sounds\collisionVoiture.xnb
 Content\Fonts\Bebas.xnb
 Content\Fonts\Bebas120.xnb

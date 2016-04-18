@@ -69,8 +69,13 @@ namespace SimulationVéhicule
 
         bool CourseActive { get; set; }
         bool MenuActif { get; set; }
+        bool ImageToucheActive { get; set; }
+        bool CoursePeutCommencer { get; set; }
 
         Texture2D Accueil { get; set; }
+        Texture2D InputClavier { get; set; }
+        Texture2D InputManette { get; set; }
+        SpriteFont Bebas { get; set; }
 
         public Game1()
         {
@@ -94,8 +99,13 @@ namespace SimulationVéhicule
             //Menu
             MenuActif = false;
             Accueil = Content.Load<Texture2D>("Textures/Accueil");
+            InputClavier = Content.Load<Texture2D>("Textures/input");
+            InputManette = Content.Load<Texture2D>("Textures/inputManette");
+            Bebas = Content.Load<SpriteFont>("Fonts/Bebas");
+            CoursePeutCommencer = true;
 
             //Course
+            ImageToucheActive = false;
             CourseActive = false;
             CibleYCaméra = 0;
             VueArrière = 1;
@@ -113,11 +123,11 @@ namespace SimulationVéhicule
             ModeDeJeu = 0;
             CréerUneCourse(2, 0);
             Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
-
-            if (CourseActive)
-            {
-                CréerUneCourse(2, 0);
-            }
+            Components.Add(Interface);
+            //if (CourseActive)
+            //{
+            //    CréerUneCourse(2, 0);
+            //}
             if (ModeDeJeu == 1)
             {
                 LeClient = new Client(this, ListeVoiture);
@@ -147,7 +157,6 @@ namespace SimulationVéhicule
             GestionSprites = new SpriteBatch(GraphicsDevice);
             Services.AddService(typeof(SpriteBatch), GestionSprites);
             Services.AddService(typeof(InputManager), GestionInput);
-            Services.AddService(typeof(bool), CourseActive);
             Services.AddService(typeof(int), IDVoitureUtilisateur);
             base.Initialize();
         }
@@ -159,21 +168,44 @@ namespace SimulationVéhicule
             TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (TempsÉcouléDepuisMAJ >= INTERVALLE_MAJ_STANDARD)
             {
-                CaméraJeu.CréerPointDeVue();
-                if (CourseActive && !MenuActif && LaCourse != null)
+                if (ModeDeJeu == 1 && NbJoueurConnectés != 2)
                 {
-                    GestionOrientationCaméra();//Si course est activée
+                    CoursePeutCommencer = false;
                 }
+                CaméraJeu.CréerPointDeVue();
 
-                if (MenuActif && !CourseActive && GestionInput.EstEnfoncée(Keys.G))
+                if (CourseActive && !ImageToucheActive && LaCourse != null)
                 {
-                    MenuActif = false;
-                    CourseActive = true;
-                    Carte.CourseActive = true;
+                    Interface.CourseActive = true;
+                    GestionOrientationCaméra();//Si course est activée
                 }
 
                 TempsÉcouléDepuisMAJ = 0;
             }
+
+
+            if (MenuActif && !ImageToucheActive && GestionInput.EstEnfoncée(Keys.G) && CoursePeutCommencer)
+            {
+                MenuActif = false;
+                ImageToucheActive = true;
+            }
+            if (ImageToucheActive && !CourseActive && GestionInput.EstEnfoncée(Keys.H))
+            {
+                ImageToucheActive = false;
+                //Interface.CourseActive = true;
+                CourseActive = true;
+                Carte.CourseActive = true;
+                foreach (Voiture x in ListeVoiture)
+                {
+                    x.CourseActive = true;
+                }
+                foreach (Sol x in LaCourse.LaPiste)
+                {
+                    x.CourseActive = true;
+                }
+                LaCourse.CourseActive = true;
+            }
+
 
             if (ModeDeJeu == 1)
             {
@@ -183,7 +215,7 @@ namespace SimulationVéhicule
                 LaCourse.NbFranchis[1] = LeClient.NbFranchisAdversaire;
             }
 
-            Window.Title = Carte.CourseActive.ToString();
+            Window.Title = MenuActif.ToString() + CourseActive.ToString();
             //Window.Title = LaCourse.NbFranchis[0].ToString() + " - " + LaCourse.NbFranchis[1].ToString() + " - " + (LaPiste.Count() * NbTours * 2).ToString() + " - " + LaCourse.CourseTerminée.ToString();
             base.Update(gameTime);
         }
@@ -202,6 +234,22 @@ namespace SimulationVéhicule
                     CourseActive = false;
                     MenuActif = true;
                 }
+            }
+
+            if (ImageToucheActive)
+            {
+                if (true)
+                {
+                    GestionSprites.Draw(InputManette, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), new Vector2(Window.ClientBounds.Width / (float)InputManette.Width, Window.ClientBounds.Height
+                / (float)InputManette.Height), SpriteEffects.None, 0);
+                }
+                else
+                {
+                    GestionSprites.Draw(InputClavier, new Vector2(0, 0), null, Color.White, 0, new Vector2(0, 0), new Vector2(Window.ClientBounds.Width / (float)InputClavier.Width, Window.ClientBounds.Height
+                / (float)InputClavier.Height), SpriteEffects.None, 0);
+                }
+
+                GestionSprites.DrawString(Bebas, GetMessage(0), new Vector2(30, Window.ClientBounds.Height - 100), new Color(24,93,114), 0, new Vector2(0, 0), 0.75f, SpriteEffects.None, 0);
             }
             base.Draw(gameTime);
             GestionSprites.End();
@@ -233,7 +281,7 @@ namespace SimulationVéhicule
             {
                 //Carte = new Terrain(this, 1f, Vector3.Zero, new Vector3(0, -1258 / 2f, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest3", "grass", 5, INTERVALLE_MAJ_STANDARD, CaméraJeu);
                 //Carte = new LeTerrain(this, 1f, Vector3.Zero, new Vector3(0, -1285 / 2f, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest3", "DétailsTerrain2", 5, INTERVALLE_MAJ_STANDARD);
-                Carte = new LeTerrain2(this, 1f, Vector3.Zero, new Vector3(0, -630, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest3", "DétailsTerrain2", 7, INTERVALLE_MAJ_STANDARD);
+                Carte = new LeTerrain2(this, 1f, Vector3.Zero, new Vector3(0, -630, 0), new Vector3(25600 / 2f, 1000 / 2f, 25600 / 2f), "CarteTest5", "DétailsTerrain2", 7, INTERVALLE_MAJ_STANDARD);
 
             }
             LaPiste = new List<Sol>();
@@ -266,7 +314,7 @@ namespace SimulationVéhicule
             Components.Add(LaCourse);
 
             //Interface = new GUI(this, INTERVALLE_MAJ_STANDARD, "aiguille2", "speedometer3", LaCourse.NbVoiture, LaCourse.NbTours, IDVoitureUtilisateur, new Vector2(Window.ClientBounds.Width, Window.ClientBounds.Height), ModeDeJeu);
-            Components.Add(Interface);
+            //Components.Add(Interface);
 
             //Services.AddService(typeof(GUI), Interface);
             //Services.AddService(typeof(int), IDVoitureUtilisateur);
@@ -292,6 +340,21 @@ namespace SimulationVéhicule
             }
         }
 
+        string GetMessage(int id)
+        {
+            string msg = "";
+            if (id == 0)
+            {
+                msg = "Appuyez sur une touche";
+
+                if (ModeDeJeu == 1 && !CoursePeutCommencer)
+                {
+                    msg = "En attente de " + (2-NbJoueurConnectés).ToString() + " autre joueur";
+                }
+            }
+
+            return msg;
+        }
     }
 
 }

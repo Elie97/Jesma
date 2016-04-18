@@ -55,7 +55,7 @@ namespace SimulationVéhicule
 
         List<Vector3[]> ListePointÉtape { get; set; }
 
-        bool CourseActive { get; set; }
+        public bool CourseActive { get; set; }
 
         public BoundingBox Box
         {
@@ -86,22 +86,6 @@ namespace SimulationVéhicule
             }
         }
 
-        //public BoundingBox BoxDroite
-        //{
-        //    get
-        //    {
-        //        return BoundingBox.CreateFromPoints(PointBoxLatéralDroit);
-        //    }
-        //}
-
-        //public BoundingBox BoxGauche
-        //{
-        //    get
-        //    {
-        //        return BoundingBox.CreateFromPoints(PointBoxLatéralGauche);
-        //    }
-        //}
-
         float PositionRelativeX { get; set; }
         float PositionRelativeZ { get; set; }
         float PositionRelativeY { get; set; }
@@ -124,6 +108,7 @@ namespace SimulationVéhicule
 
         public override void Initialize()
         {
+            CourseActive = false;
             CouleurCheckPoint = Color.Red;
             ListeFranchi = new List<bool>();//pcq il y a + de 1 check point par piste!
             ListeFranchiParVoiture = new List<List<bool>>();
@@ -227,12 +212,6 @@ namespace SimulationVéhicule
                     Sommets[++NoSommet] = new VertexPositionTexture(PtsSommets[i + 1, j], PtsTexture[i + 1, j]);
                     Sommets[++NoSommet] = new VertexPositionTexture(PtsSommets[i, j + 1], PtsTexture[i, j + 1]);
                     Sommets[++NoSommet] = new VertexPositionTexture(PtsSommets[i + 1, j + 1], PtsTexture[i + 1, j + 1]);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i, j], Color.Red);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i, j + 1], Color.Red);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i + 1, j], Color.Red);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i + 1, j], Color.Red);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i, j + 1], Color.Red);
-                    //Sommets[++NoSommet] = new VertexPositionColor(PtsSommets[i + 1, j + 1], Color.Red);
                 }
             }
         }
@@ -268,11 +247,11 @@ namespace SimulationVéhicule
             //EffetDeBase.VertexColorEnabled = true;
             EffetDeBase.TextureEnabled = true;
             EffetDeBase.Texture = LaTexture;
+
         }
 
         public override void Draw(GameTime gameTime)
         {
-            CourseActive = (bool)Game.Services.GetService(typeof(bool));
             if (CourseActive)
             {
                 EffetDeBase.World = GetMonde();
@@ -289,6 +268,7 @@ namespace SimulationVéhicule
                     DebugShapeRenderer.AddBoundingBox(x, CouleurCheckPoint);
                 }
             }
+
             base.Draw(gameTime);
         }
 
@@ -354,8 +334,10 @@ namespace SimulationVéhicule
                     PointsBoxComplet[i + (i * j)] = PtsSommets[i, j];
                 }
             }
-            PointsBoxComplet[0] = new Vector3(PointsBoxComplet[0].X- 50, PointsBoxComplet[0].Y, PointsBoxComplet[0].Z);
-            PointsBoxComplet[1] = new Vector3(PointsBoxComplet[1].X + 50, PointsBoxComplet[1].Y + 500, PointsBoxComplet[1].Z);
+            PointsBoxComplet[0] = new Vector3(PointsBoxComplet[0].X, PointsBoxComplet[0].Y, PointsBoxComplet[0].Z);
+            PointsBoxComplet[1] = new Vector3(PointsBoxComplet[1].X, PointsBoxComplet[1].Y + 500, PointsBoxComplet[1].Z);
+            //PointsBoxComplet[0] = new Vector3(PointsBoxComplet[0].X- 50, PointsBoxComplet[0].Y, PointsBoxComplet[0].Z);
+            //PointsBoxComplet[1] = new Vector3(PointsBoxComplet[1].X + 50, PointsBoxComplet[1].Y + 500, PointsBoxComplet[1].Z);
             transformation = Matrix.CreateFromYawPitchRoll(RotationInitiale.Y, RotationInitiale.X, 0) * Matrix.CreateTranslation(PositionInitiale);
             for (int i = 0; i < PointsBoxComplet.Length; i++)
             {
@@ -370,8 +352,10 @@ namespace SimulationVéhicule
                 PointsÉtape = new Vector3[2];
                 if (!Courbe)
                 {
-                    PointsÉtape[0] = new Vector3(PtsSommets[0, NbRangées - 1].X - 50, PtsSommets[0, NbRangées - 1].Y, PtsSommets[0, NbRangées - 1].Z / (k + 1));
-                    PointsÉtape[1] = new Vector3(PtsSommets[NbColonnes - 1, NbRangées - 1].X + 50, PtsSommets[NbColonnes - 1, NbRangées - 1].Y + 100, PtsSommets[NbColonnes - 1, NbRangées - 1].Z / (k + 1));   
+                    PointsÉtape[0] = new Vector3(PtsSommets[0, NbRangées - 1].X, PtsSommets[0, NbRangées - 1].Y, PtsSommets[0, NbRangées - 1].Z / (k + 1));
+                    PointsÉtape[1] = new Vector3(PtsSommets[NbColonnes - 1, NbRangées - 1].X, PtsSommets[NbColonnes - 1, NbRangées - 1].Y + 100, PtsSommets[NbColonnes - 1, NbRangées - 1].Z / (k + 1));   
+                    //PointsÉtape[0] = new Vector3(PtsSommets[0, NbRangées - 1].X - 50, PtsSommets[0, NbRangées - 1].Y, PtsSommets[0, NbRangées - 1].Z / (k + 1));
+                    //PointsÉtape[1] = new Vector3(PtsSommets[NbColonnes - 1, NbRangées - 1].X + 50, PtsSommets[NbColonnes - 1, NbRangées - 1].Y + 100, PtsSommets[NbColonnes - 1, NbRangées - 1].Z / (k + 1));   
                 }
                 else
                 {

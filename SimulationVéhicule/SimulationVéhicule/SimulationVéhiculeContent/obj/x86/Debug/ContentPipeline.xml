@@ -2,12 +2,125 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline" xmlns:Framework="Microsoft.Xna.Framework" xmlns:Processors="Microsoft.Xna.Framework.Content.Pipeline.Processors">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
+      <Source>Models\MustangGT500SansRoue.FBX</Source>
+      <Name>Models\MustangGT500SansRoue</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500SansRoue.xnb</Output>
+      <Time>2016-03-19T22:19:47.6947519-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Key>
+        <Value>2016-04-12T21:48:00.6423888-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500.FBX</Source>
+      <Name>Models\MustangGT500</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500.xnb</Output>
+      <Time>2016-02-03T16:43:56.8674559-05:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\MustangGT500_0.xml</Key>
+        <Value>2016-04-12T21:48:03.9664697-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\tank.fbx</Source>
+      <Name>Models\tank</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\tank.xnb</Output>
+      <Time>2016-02-21T16:26:05.1391279-05:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\tank_0.xml</Key>
+        <Value>2016-04-12T21:48:06.2417619-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Request>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Audi R8.fbx</Source>
+      <Name>Models\Audi R8</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Audi R8.xnb</Output>
+      <Time>2016-03-18T22:00:49.139798-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Audi R8_0.xml</Key>
+        <Value>2016-04-12T21:48:21.3083026-04:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\Pneu.FBX</Source>
+      <Name>Models\Pneu</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Pneu.xnb</Output>
+      <Time>2016-03-19T17:21:11.3532804-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Pneu_0.xml</Key>
+        <Value>2016-04-12T21:48:23.2106092-04:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Models\Ciel2.FBX</Source>
+      <Name>Models\Ciel2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Ciel2.xnb</Output>
+      <Time>2016-03-21T17:24:55.0071329-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Ciel2_0.xml</Key>
+        <Value>2016-04-12T21:48:23.2826084-04:00</Value>
+      </Dependency>
+      <Request>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\SkyDomeTexture_0.xnb</Request>
+    </Item>
+    <Item>
+      <Source>Models\Bridge.FBX</Source>
+      <Name>Models\Bridge</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Bridge.xnb</Output>
+      <Time>2016-03-25T17:35:18.2816261-04:00</Time>
+      <Dependency>
+        <Key>obj\x86\Debug\Models\Bridge_0.xml</Key>
+        <Value>2016-04-12T21:48:24.4275601-04:00</Value>
+      </Dependency>
+    </Item>
+    <Item>
+      <Source>Textures\route.jpg</Source>
+      <Name>Textures\route</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\route.xnb</Output>
+      <Time>2016-03-23T13:52:42.6656006-04:00</Time>
+    </Item>
+    <Item>
       <Source>Models\_Corroga.jpg</Source>
       <Name>Models\_Corroga</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga.xnb</Output>
       <Time>2016-02-01T16:58:16.0528137-05:00</Time>
     </Item>
     <Item>
@@ -16,7 +129,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01.xnb</Output>
       <Time>2016-02-01T16:58:16.0528137-05:00</Time>
     </Item>
     <Item>
@@ -25,7 +138,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02.xnb</Output>
       <Time>2016-02-01T16:58:16.0688813-05:00</Time>
     </Item>
     <Item>
@@ -34,7 +147,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03.xnb</Output>
       <Time>2016-02-01T16:58:16.0845063-05:00</Time>
     </Item>
     <Item>
@@ -43,7 +156,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa.xnb</Output>
       <Time>2016-02-01T16:58:16.1001282-05:00</Time>
     </Item>
     <Item>
@@ -52,7 +165,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex.xnb</Output>
       <Time>2016-02-21T16:26:05.1141431-05:00</Time>
     </Item>
     <Item>
@@ -61,7 +174,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex.xnb</Output>
       <Time>2016-02-21T16:26:05.1561409-05:00</Time>
     </Item>
     <Item>
@@ -70,7 +183,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain.xnb</Output>
       <Time>2016-03-01T20:52:12.8617489-05:00</Time>
     </Item>
     <Item>
@@ -79,41 +192,296 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Terrain.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Terrain.xnb</Output>
       <Time>2016-02-24T14:35:07.8961362-05:00</Time>
     </Item>
     <Item>
-      <Source>Models\MustangGT500.FBX</Source>
-      <Name>Models\MustangGT500</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+      <Source>Textures\test.bmp</Source>
+      <Name>Textures\test</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500.xnb</Output>
-      <Time>2016-02-03T16:43:56.8674559-05:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\MustangGT500_0.xml</Key>
-        <Value>2016-03-10T19:39:10.8727317-05:00</Value>
-      </Dependency>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\test.xnb</Output>
+      <Time>2016-03-01T20:43:37.5973077-05:00</Time>
     </Item>
     <Item>
-      <Source>Models\tank.fbx</Source>
-      <Name>Models\tank</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
+      <Source>Textures\speedometer3.png</Source>
+      <Name>Textures\speedometer3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\tank.xnb</Output>
-      <Time>2016-02-21T16:26:05.1391279-05:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\tank_0.xml</Key>
-        <Value>2016-03-10T19:39:10.9137611-05:00</Value>
-      </Dependency>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Request>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\speedometer3.xnb</Output>
+      <Time>2016-03-17T18:54:45.1827738-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\aiguille2.png</Source>
+      <Name>Textures\aiguille2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\aiguille2.xnb</Output>
+      <Time>2016-03-17T19:06:41.7194819-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notification.png</Source>
+      <Name>Textures\notification</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notification.xnb</Output>
+      <Time>2016-03-17T21:25:16.4293592-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notif.png</Source>
+      <Name>Textures\notif</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notif.xnb</Output>
+      <Time>2016-03-20T13:06:53.312437-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notifFinCourse.png</Source>
+      <Name>Textures\notifFinCourse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifFinCourse.xnb</Output>
+      <Time>2016-03-20T13:39:15.8181837-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notifTour.png</Source>
+      <Name>Textures\notifTour</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifTour.xnb</Output>
+      <Time>2016-03-20T13:38:39.7691498-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\cloudMap.jpg</Source>
+      <Name>Models\cloudMap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\cloudMap.xnb</Output>
+      <Time>2016-03-21T16:39:25.8580038-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest.png</Source>
+      <Name>Textures\CarteTest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest.xnb</Output>
+      <Time>2016-03-22T14:03:02.9763202-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\DétailsTerrain2.jpg</Source>
+      <Name>Textures\DétailsTerrain2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain2.xnb</Output>
+      <Time>2016-04-01T18:50:32.7402972-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\DétailsTerrain3.jpg</Source>
+      <Name>Textures\DétailsTerrain3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain3.xnb</Output>
+      <Time>2016-04-01T16:14:26.1247697-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\SkyDomeTexture.png</Source>
+      <Name>Models\SkyDomeTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\SkyDomeTexture.xnb</Output>
+      <Time>2016-03-21T17:22:05.5170353-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest2.png</Source>
+      <Name>Textures\CarteTest2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest2.xnb</Output>
+      <Time>2016-03-23T15:34:11.5631743-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest3.png</Source>
+      <Name>Textures\CarteTest3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest3.xnb</Output>
+      <Time>2016-04-09T20:07:35.7465701-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\courseCountdown.png</Source>
+      <Name>Textures\courseCountdown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\courseCountdown.xnb</Output>
+      <Time>2016-03-24T10:59:26.0586555-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\décompte1.png</Source>
+      <Name>Textures\décompte1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte1.xnb</Output>
+      <Time>2016-03-24T19:43:35.854572-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\décompte2.png</Source>
+      <Name>Textures\décompte2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte2.xnb</Output>
+      <Time>2016-03-24T19:44:01.8753541-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\décompte3.png</Source>
+      <Name>Textures\décompte3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte3.xnb</Output>
+      <Time>2016-03-24T19:44:44.0040137-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\décompte4.png</Source>
+      <Name>Textures\décompte4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte4.xnb</Output>
+      <Time>2016-03-24T19:44:57.4137965-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ÉcranNoir.png</Source>
+      <Name>Textures\ÉcranNoir</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\ÉcranNoir.xnb</Output>
+      <Time>2016-03-24T23:02:28.1356178-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\confettis.png</Source>
+      <Name>Textures\confettis</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\confettis.xnb</Output>
+      <Time>2016-03-24T23:17:19.6867859-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\trophée.png</Source>
+      <Name>Textures\trophée</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\trophée.xnb</Output>
+      <Time>2016-03-24T23:22:45.9821829-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\routeDépart.jpg</Source>
+      <Name>Textures\routeDépart</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeDépart.xnb</Output>
+      <Time>2016-04-17T11:11:27.4409493-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\grass.dds</Source>
+      <Name>Textures\grass</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\grass.xnb</Output>
+      <Time>2016-03-31T20:22:38.0702356-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\snow.dds</Source>
+      <Name>Textures\snow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\snow.xnb</Output>
+      <Time>2016-03-31T21:05:36.2303227-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\rock.dds</Source>
+      <Name>Textures\rock</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\rock.xnb</Output>
+      <Time>2016-03-31T21:07:48.3442817-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\sand.dds</Source>
+      <Name>Textures\sand</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\sand.xnb</Output>
+      <Time>2016-03-31T21:08:26.6348516-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\CarteTest4.png</Source>
+      <Name>Textures\CarteTest4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest4.xnb</Output>
+      <Time>2016-03-31T22:55:23.1410697-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\testterraintexture.png</Source>
+      <Name>Models\testterraintexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\testterraintexture.xnb</Output>
+      <Time>2016-04-02T23:40:59.9465642-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\notifPerteConnection.png</Source>
+      <Name>Textures\notifPerteConnection</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifPerteConnection.xnb</Output>
+      <Time>2016-04-07T16:45:03.9546194-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Accueil.jpg</Source>
+      <Name>Textures\Accueil</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Accueil.xnb</Output>
+      <Time>2016-04-07T18:00:10.9954761-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\routeSale.jpg</Source>
+      <Name>Textures\routeSale</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale.xnb</Output>
+      <Time>2016-04-16T22:33:45.301534-04:00</Time>
     </Item>
     <Item>
       <Source>Sounds\acceleration.wav</Source>
@@ -121,7 +489,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\acceleration.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\acceleration.xnb</Output>
       <Time>2016-02-07T14:11:51.9838754-05:00</Time>
     </Item>
     <Item>
@@ -130,7 +498,7 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\EngineSound.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\EngineSound.xnb</Output>
       <Time>2016-02-07T14:16:52.502997-05:00</Time>
     </Item>
     <Item>
@@ -139,8 +507,125 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\brakeEffect.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\brakeEffect.xnb</Output>
       <Time>2016-02-07T14:48:01.6015703-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\notif.wav</Source>
+      <Name>Sounds\notif</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\notif.xnb</Output>
+      <Time>2016-03-20T13:21:16.6222008-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\TimeIntro.wav</Source>
+      <Name>Sounds\TimeIntro</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\TimeIntro.xnb</Output>
+      <Time>2016-03-23T20:00:51.8281401-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Gear1.wav</Source>
+      <Name>Sounds\Gear1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear1.xnb</Output>
+      <Time>2014-03-27T08:28:22-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Gear1ToGear2.wav</Source>
+      <Name>Sounds\Gear1ToGear2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear1ToGear2.xnb</Output>
+      <Time>2014-03-27T08:28:22-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Gear2.wav</Source>
+      <Name>Sounds\Gear2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear2.xnb</Output>
+      <Time>2014-03-27T08:28:22-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Gear3.wav</Source>
+      <Name>Sounds\Gear3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear3.xnb</Output>
+      <Time>2014-03-27T08:28:22-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\BrakeCurveMajor.wav</Source>
+      <Name>Sounds\BrakeCurveMajor</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\BrakeCurveMajor.xnb</Output>
+      <Time>2014-03-27T08:28:22-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\BornToBeWild.wav</Source>
+      <Name>Sounds\BornToBeWild</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\BornToBeWild.xnb</Output>
+      <Time>2016-03-24T16:25:59.6325471-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\beepAigu.wav</Source>
+      <Name>Sounds\beepAigu</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\beepAigu.xnb</Output>
+      <Time>2016-03-24T19:23:36.3493864-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\beepGrave.wav</Source>
+      <Name>Sounds\beepGrave</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\beepGrave.xnb</Output>
+      <Time>2016-03-24T19:23:14.43676-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Defaite.wav</Source>
+      <Name>Sounds\Defaite</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Defaite.xnb</Output>
+      <Time>2016-03-24T20:56:52.4440375-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Victoire.wav</Source>
+      <Name>Sounds\Victoire</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Victoire.xnb</Output>
+      <Time>2016-03-24T20:51:15.4563497-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\ChaseAndStatus.wav</Source>
+      <Name>Sounds\ChaseAndStatus</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\ChaseAndStatus.xnb</Output>
+      <Time>2016-04-03T16:25:00.8162642-04:00</Time>
     </Item>
     <Item>
       <Source>Fonts\Arial.spritefont</Source>
@@ -148,15 +633,24 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
-      <Time>2016-03-24T11:20:31.8704537-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Fonts\Arial.xnb</Output>
+      <Time>2016-04-12T21:37:34.935483-04:00</Time>
     </Item>
     <Item>
-      <Source>Models\MustangGT500.FBX</Source>
+      <Source>effects.fx</Source>
+      <Name>effects</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\effects.xnb</Output>
+      <Time>2016-03-22T20:39:23.1256383-04:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500SansRoue.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\MustangGT500_0.xml</Output>
-      <Time>2016-02-03T16:43:56.8674559-05:00</Time>
+      <Output>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Output>
+      <Time>2016-03-19T22:19:47.6947519-04:00</Time>
     </Item>
     <Item>
       <Source>Models\_Corroga.jpg</Source>
@@ -171,7 +665,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Output>
       <Time>2016-02-01T16:58:16.0528137-05:00</Time>
     </Item>
     <Item>
@@ -187,7 +681,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Output>
       <Time>2016-02-01T16:58:16.0845063-05:00</Time>
     </Item>
     <Item>
@@ -203,7 +697,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Output>
       <Time>2016-02-01T16:58:16.0688813-05:00</Time>
     </Item>
     <Item>
@@ -219,7 +713,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Output>
       <Time>2016-02-01T16:58:16.1001282-05:00</Time>
     </Item>
     <Item>
@@ -235,8 +729,15 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Output>
       <Time>2016-02-01T16:58:16.0528137-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Models\MustangGT500.FBX</Source>
+      <Importer>FbxImporter</Importer>
+      <Options>IntermediateFile, DontCacheImportedData</Options>
+      <Output>obj\x86\Debug\Models\MustangGT500_0.xml</Output>
+      <Time>2016-02-03T16:43:56.8674559-05:00</Time>
     </Item>
     <Item>
       <Source>Models\tank.fbx</Source>
@@ -258,7 +759,7 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\engine_diff_tex_0.xnb</Output>
       <Time>2016-02-21T16:26:05.1141431-05:00</Time>
     </Item>
     <Item>
@@ -274,66 +775,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\turret_alt_diff_tex_0.xnb</Output>
       <Time>2016-02-21T16:26:05.1561409-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\route.jpg</Source>
-      <Name>Textures\route</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\route.xnb</Output>
-      <Time>2016-03-23T13:52:42.6656006-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\test.bmp</Source>
-      <Name>Textures\test</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\test.xnb</Output>
-      <Time>2016-03-01T20:43:37.5973077-05:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\speedometer3.png</Source>
-      <Name>Textures\speedometer3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\speedometer3.xnb</Output>
-      <Time>2016-03-17T18:54:45.1827738-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\aiguille2.png</Source>
-      <Name>Textures\aiguille2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\aiguille2.xnb</Output>
-      <Time>2016-03-17T19:06:41.7194819-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\notification.png</Source>
-      <Name>Textures\notification</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notification.xnb</Output>
-      <Time>2016-03-17T21:25:16.4293592-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Audi R8.fbx</Source>
-      <Name>Models\Audi R8</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Audi R8.xnb</Output>
-      <Time>2016-03-18T22:00:49.139798-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Audi R8_0.xml</Key>
-        <Value>2016-03-18T22:01:15.0859938-04:00</Value>
-      </Dependency>
     </Item>
     <Item>
       <Source>Models\Audi R8.fbx</Source>
@@ -344,143 +787,10 @@
     </Item>
     <Item>
       <Source>Models\Pneu.FBX</Source>
-      <Name>Models\Pneu</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Pneu.xnb</Output>
-      <Time>2016-03-19T17:21:11.3532804-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Pneu_0.xml</Key>
-        <Value>2016-03-21T16:39:26.7471353-04:00</Value>
-      </Dependency>
-    </Item>
-    <Item>
-      <Source>Models\Pneu.FBX</Source>
       <Importer>FbxImporter</Importer>
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Pneu_0.xml</Output>
       <Time>2016-03-19T17:21:11.3532804-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\MustangGT500SansRoue.FBX</Source>
-      <Name>Models\MustangGT500SansRoue</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\MustangGT500SansRoue.xnb</Output>
-      <Time>2016-03-19T22:19:47.6947519-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Key>
-        <Value>2016-03-21T16:39:26.7416328-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Corroga_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_03_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_02_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_Wa_0.xnb</Request>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\_Pool_01_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\MustangGT500SansRoue.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\MustangGT500SansRoue_0.xml</Output>
-      <Time>2016-03-19T22:19:47.6947519-04:00</Time>
-    </Item>
-    <Item>
-      <Source>effects.fx</Source>
-      <Name>effects</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\effects.xnb</Output>
-      <Time>2016-03-22T20:39:23.1256383-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\notif.png</Source>
-      <Name>Textures\notif</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notif.xnb</Output>
-      <Time>2016-03-20T13:06:53.312437-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\notif.wav</Source>
-      <Name>Sounds\notif</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\notif.xnb</Output>
-      <Time>2016-03-20T13:21:16.6222008-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\notifFinCourse.png</Source>
-      <Name>Textures\notifFinCourse</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifFinCourse.xnb</Output>
-      <Time>2016-03-20T13:39:15.8181837-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\notifTour.png</Source>
-      <Name>Textures\notifTour</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifTour.xnb</Output>
-      <Time>2016-03-20T13:38:39.7691498-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\cloudMap.jpg</Source>
-      <Name>Models\cloudMap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\cloudMap.xnb</Output>
-      <Time>2016-03-21T16:39:25.8580038-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\CarteTest.png</Source>
-      <Name>Textures\CarteTest</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest.xnb</Output>
-      <Time>2016-03-22T14:03:02.9763202-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\DétailsTerrain2.jpg</Source>
-      <Name>Textures\DétailsTerrain2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain2.xnb</Output>
-      <Time>2016-04-01T18:50:32.7402972-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\DétailsTerrain3.jpg</Source>
-      <Name>Textures\DétailsTerrain3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\DétailsTerrain3.xnb</Output>
-      <Time>2016-04-01T16:14:26.1247697-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Ciel2.FBX</Source>
-      <Name>Models\Ciel2</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Ciel2.xnb</Output>
-      <Time>2016-03-21T17:24:55.0071329-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Ciel2_0.xml</Key>
-        <Value>2016-03-21T17:25:00.7786799-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\SkyDomeTexture_0.xnb</Request>
     </Item>
     <Item>
       <Source>Models\Ciel2.FBX</Source>
@@ -488,15 +798,6 @@
       <Options>IntermediateFile, DontCacheImportedData</Options>
       <Output>obj\x86\Debug\Models\Ciel2_0.xml</Output>
       <Time>2016-03-21T17:24:55.0071329-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\SkyDomeTexture.png</Source>
-      <Name>Models\SkyDomeTexture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\SkyDomeTexture.xnb</Output>
-      <Time>2016-03-21T17:22:05.5170353-04:00</Time>
     </Item>
     <Item>
       <Source>Textures\SkyDomeTexture.png</Source>
@@ -511,210 +812,8 @@
         <Data Key="PremultiplyAlpha" Type="bool">true</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\SkyDomeTexture_0.xnb</Output>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\SkyDomeTexture_0.xnb</Output>
       <Time>2016-03-21T17:24:27.6803778-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\CarteTest2.png</Source>
-      <Name>Textures\CarteTest2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest2.xnb</Output>
-      <Time>2016-03-23T15:34:11.5631743-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\CarteTest3.png</Source>
-      <Name>Textures\CarteTest3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest3.xnb</Output>
-      <Time>2016-04-09T20:07:35.7465701-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\TimeIntro.wav</Source>
-      <Name>Sounds\TimeIntro</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\TimeIntro.xnb</Output>
-      <Time>2016-03-23T20:00:51.8281401-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\courseCountdown.png</Source>
-      <Name>Textures\courseCountdown</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\courseCountdown.xnb</Output>
-      <Time>2016-03-24T10:59:26.0586555-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Gear1.wav</Source>
-      <Name>Sounds\Gear1</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear1.xnb</Output>
-      <Time>2014-03-27T08:28:22-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Gear1ToGear2.wav</Source>
-      <Name>Sounds\Gear1ToGear2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear1ToGear2.xnb</Output>
-      <Time>2014-03-27T08:28:22-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Gear2.wav</Source>
-      <Name>Sounds\Gear2</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear2.xnb</Output>
-      <Time>2014-03-27T08:28:22-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Gear3.wav</Source>
-      <Name>Sounds\Gear3</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Gear3.xnb</Output>
-      <Time>2014-03-27T08:28:22-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\BrakeCurveMajor.wav</Source>
-      <Name>Sounds\BrakeCurveMajor</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\BrakeCurveMajor.xnb</Output>
-      <Time>2014-03-27T08:28:22-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\BornToBeWild.wav</Source>
-      <Name>Sounds\BornToBeWild</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\BornToBeWild.xnb</Output>
-      <Time>2016-03-24T16:25:59.6325471-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\décompte1.png</Source>
-      <Name>Textures\décompte1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte1.xnb</Output>
-      <Time>2016-03-24T19:43:35.854572-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\décompte2.png</Source>
-      <Name>Textures\décompte2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte2.xnb</Output>
-      <Time>2016-03-24T19:44:01.8753541-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\décompte3.png</Source>
-      <Name>Textures\décompte3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte3.xnb</Output>
-      <Time>2016-03-24T19:44:44.0040137-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\décompte4.png</Source>
-      <Name>Textures\décompte4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\décompte4.xnb</Output>
-      <Time>2016-03-24T19:44:57.4137965-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\beepAigu.wav</Source>
-      <Name>Sounds\beepAigu</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\beepAigu.xnb</Output>
-      <Time>2016-03-24T19:23:36.3493864-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\beepGrave.wav</Source>
-      <Name>Sounds\beepGrave</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\beepGrave.xnb</Output>
-      <Time>2016-03-24T19:23:14.43676-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Defaite.wav</Source>
-      <Name>Sounds\Defaite</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Defaite.xnb</Output>
-      <Time>2016-03-24T20:56:52.4440375-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Victoire.wav</Source>
-      <Name>Sounds\Victoire</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\Victoire.xnb</Output>
-      <Time>2016-03-24T20:51:15.4563497-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\ÉcranNoir.png</Source>
-      <Name>Textures\ÉcranNoir</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\ÉcranNoir.xnb</Output>
-      <Time>2016-03-24T23:02:28.1356178-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\confettis.png</Source>
-      <Name>Textures\confettis</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\confettis.xnb</Output>
-      <Time>2016-03-24T23:17:19.6867859-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\trophée.png</Source>
-      <Name>Textures\trophée</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\trophée.xnb</Output>
-      <Time>2016-03-24T23:22:45.9821829-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\Bridge.FBX</Source>
-      <Name>Models\Bridge</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\Bridge.xnb</Output>
-      <Time>2016-03-25T17:35:18.2816261-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\Bridge_0.xml</Key>
-        <Value>2016-03-25T17:40:19.2391036-04:00</Value>
-      </Dependency>
     </Item>
     <Item>
       <Source>Models\Bridge.FBX</Source>
@@ -724,149 +823,67 @@
       <Time>2016-03-25T17:35:18.2816261-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\routeDépart.jpg</Source>
-      <Name>Textures\routeDépart</Name>
+      <Source>Textures\input.jpg</Source>
+      <Name>Textures\input</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeDépart.xnb</Output>
-      <Time>2016-03-28T00:20:22.5777173-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\input.xnb</Output>
+      <Time>2016-04-07T17:51:29.4177854-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\grass.dds</Source>
-      <Name>Textures\grass</Name>
+      <Source>Textures\inputManette.jpg</Source>
+      <Name>Textures\inputManette</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\grass.xnb</Output>
-      <Time>2016-03-31T20:22:38.0702356-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\inputManette.xnb</Output>
+      <Time>2016-04-13T14:25:58.3683259-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\snow.dds</Source>
-      <Name>Textures\snow</Name>
+      <Source>Textures\routeSale2.jpg</Source>
+      <Name>Textures\routeSale2</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\snow.xnb</Output>
-      <Time>2016-03-31T21:05:36.2303227-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale2.xnb</Output>
+      <Time>2016-04-16T22:19:15.3840142-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\rock.dds</Source>
-      <Name>Textures\rock</Name>
+      <Source>Textures\CarteTest5.png</Source>
+      <Name>Textures\CarteTest5</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\rock.xnb</Output>
-      <Time>2016-03-31T21:07:48.3442817-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest5.xnb</Output>
+      <Time>2016-04-17T20:39:04.6889849-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\sand.dds</Source>
-      <Name>Textures\sand</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\sand.xnb</Output>
-      <Time>2016-03-31T21:08:26.6348516-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\map.jpg</Source>
-      <Name>Textures\map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\map.xnb</Output>
-      <Time>2016-03-31T22:15:12.8787207-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\CarteTest4.png</Source>
-      <Name>Textures\CarteTest4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\CarteTest4.xnb</Output>
-      <Time>2016-03-31T22:55:23.1410697-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\testCarte.FBX</Source>
-      <Name>Models\testCarte</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\testCarte.xnb</Output>
-      <Time>2016-04-02T23:40:26.2068701-04:00</Time>
-      <Dependency>
-        <Key>obj\x86\Debug\Models\testCarte_0.xml</Key>
-        <Value>2016-04-02T23:43:14.3524232-04:00</Value>
-      </Dependency>
-      <Request>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\testterraintexture_0.xnb</Request>
-    </Item>
-    <Item>
-      <Source>Models\testterraintexture.png</Source>
-      <Name>Models\testterraintexture</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Models\testterraintexture.xnb</Output>
-      <Time>2016-04-02T23:40:59.9465642-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Models\testCarte.FBX</Source>
-      <Importer>FbxImporter</Importer>
-      <Options>IntermediateFile, DontCacheImportedData</Options>
-      <Output>obj\x86\Debug\Models\testCarte_0.xml</Output>
-      <Time>2016-04-02T23:40:26.2068701-04:00</Time>
-    </Item>
-    <Item>
-      <Source>C:\EarthSculptor\testterraintexture.png</Source>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Parameters>
-        <Data Key="ColorKeyColor" Type="Framework:Color">FFFF00FF</Data>
-        <Data Key="ColorKeyEnabled" Type="bool">true</Data>
-        <Data Key="TextureFormat" Type="Processors:TextureProcessorOutputFormat">DxtCompressed</Data>
-        <Data Key="GenerateMipmaps" Type="bool">true</Data>
-        <Data Key="ResizeToPowerOfTwo" Type="bool">false</Data>
-        <Data Key="PremultiplyAlpha" Type="bool">true</Data>
-      </Parameters>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\testterraintexture_0.xnb</Output>
-      <Time>2016-04-02T23:39:08.1824407-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\ChaseAndStatus.wav</Source>
-      <Name>Sounds\ChaseAndStatus</Name>
+      <Source>Sounds\frein.wav</Source>
+      <Name>Sounds\frein</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\ChaseAndStatus.xnb</Output>
-      <Time>2016-04-03T16:25:00.8162642-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\frein.xnb</Output>
+      <Time>2016-04-17T20:07:42.2761765-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\notifPerteConnection.png</Source>
-      <Name>Textures\notifPerteConnection</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Sounds\collisionBordure.wav</Source>
+      <Name>Sounds\collisionBordure</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\notifPerteConnection.xnb</Output>
-      <Time>2016-04-07T16:45:03.9546194-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionBordure.xnb</Output>
+      <Time>2016-04-17T20:14:44.6221386-04:00</Time>
     </Item>
     <Item>
-      <Source>Textures\Accueil.jpg</Source>
-      <Name>Textures\Accueil</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
+      <Source>Sounds\collisionVoiture.wav</Source>
+      <Name>Sounds\collisionVoiture</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\Accueil.xnb</Output>
-      <Time>2016-04-07T18:00:10.9954761-04:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\routeSale.jpg</Source>
-      <Name>Textures\routeSale</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Textures\routeSale.xnb</Output>
-      <Time>2016-04-07T18:00:11.0034763-04:00</Time>
+      <Output>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\Sounds\collisionVoiture.xnb</Output>
+      <Time>2016-04-17T20:15:39.4016943-04:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -874,10 +891,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\élie\Documents\GitHub\SimulationVoiture\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhicule\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

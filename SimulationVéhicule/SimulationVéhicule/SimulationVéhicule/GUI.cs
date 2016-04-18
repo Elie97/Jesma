@@ -95,7 +95,8 @@ namespace SimulationVéhicule
 
         bool DépartCourse { get; set; }
 
-        bool CourseActive { get; set; }
+        public bool CourseActive { get; set; }
+
         public GUI(Game game, float intervalleMAJ, string aiguille, string accéléromètre, int nbVoiture, int nbTours, int idVoitureUtilisateur, Vector2 dimensionÉcran, int modeDeJeu)
             : base(game)
         {
@@ -128,6 +129,7 @@ namespace SimulationVéhicule
 
         public override void Initialize()
         {
+            CourseActive = false;
             TempsÉcouléDepuisMAJ = 0;
             RotationAiguille = 0;
             PourcentageCourse = 0;
@@ -181,7 +183,7 @@ namespace SimulationVéhicule
 
         public override void Update(GameTime gameTime)
         {
-            CourseActive = (bool)Game.Services.GetService(typeof(bool));
+            //Game.Window.Title = Afficher.ToString();
             if (CourseActive)
             {
                 if (Afficher)

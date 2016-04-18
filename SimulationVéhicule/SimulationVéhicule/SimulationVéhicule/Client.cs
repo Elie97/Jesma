@@ -46,8 +46,8 @@ namespace SimulationVéhicule
         public override void Initialize()
         {
             BufferSize = 2048;
-            IP = "172.17.106.124";
-            Port = 5004;
+            IP = "127.0.0.1";// "172.17.106.124";
+            Port = 1299;//5004;
             LeClient = new TcpClient();
             LeClient.NoDelay = true;
             LeClient.Connect(IP, Port);

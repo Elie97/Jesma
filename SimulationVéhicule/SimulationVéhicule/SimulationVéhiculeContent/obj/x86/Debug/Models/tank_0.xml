@@ -3,7 +3,7 @@
   <Asset Type="Graphics:MeshContent">
     <Name>tank_geo</Name>
     <Identity>
-      <SourceFilename>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
+      <SourceFilename>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
       <SourceTool>FbxImporter</SourceTool>
     </Identity>
     <Transform>1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</Transform>
@@ -236,7 +236,7 @@
     <Resource ID="#Resource1" Type="Graphics:BasicMaterialContent">
       <Name>engine_phong</Name>
       <Identity>
-        <SourceFilename>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
+        <SourceFilename>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>
@@ -258,7 +258,7 @@
     <Resource ID="#Resource2" Type="Graphics:BasicMaterialContent">
       <Name>turret_phong</Name>
       <Identity>
-        <SourceFilename>C:\Users\201448183\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
+        <SourceFilename>C:\Users\élie\Documents\GitHub\Jesma\SimulationVéhicule\SimulationVéhicule\SimulationVéhiculeContent\Models\tank.fbx</SourceFilename>
         <SourceTool>FbxImporter</SourceTool>
       </Identity>
       <OpaqueData>

@@ -18,6 +18,7 @@ namespace SimulationVéhicule
         public int NbVoiture { get; set; }
         public int[] ToursFait { get; set; }
         public List<Sol> LaPiste { get; set; }
+        public List<Sol> PisteSansCourbe { get; set; }
         public List<Voiture> ListeVoiture { get; set; }
         public List<bool[]> CheckPointParVoiture { get; set; }
         public List<int[]> FranchiParVoiture { get; set; }
@@ -109,7 +110,9 @@ namespace SimulationVéhicule
 
         public bool CourseTerminée { get; set; }
 
-        bool CourseActive { get; set; }
+        public bool CourseActive { get; set; }
+
+        bool AfficherMessageReplacer { get; set; }
 
 
 
@@ -157,6 +160,7 @@ namespace SimulationVéhicule
 
         public override void Initialize()
         {
+            CourseActive = false;
             ListeCinématiqueTerminée = new List<bool>(2);
             ListeCinématiqueTerminée.Add(false);
             Initialization = true;
@@ -188,11 +192,11 @@ namespace SimulationVéhicule
             {
                 NbFranchis[i] = 0;
                 ToursFait[i] = 0;
-                CheckPointParVoiture.Add(new bool[LaPiste.Count()]);
+                CheckPointParVoiture.Add(new bool[PisteSansCourbe.Count()]);
                 FranchiParVoiture.Add(new int[2]);
             }
 
-            EstSonJoué = new bool[] { false, false, false, false, false, false };
+            EstSonJoué = new bool[] { false, false, false, false, false, false, false };
             AfficherÉcranNoir = false;
             AfficherConfettis = false;
 
@@ -214,13 +218,13 @@ namespace SimulationVéhicule
             SolEnCollision = new Sol[NbVoiture];
             for (int v = 0; v < NbVoiture; v++)
             {
-                SolEnCollision[v] = LaPiste[0];
+                SolEnCollision[v] = PisteSansCourbe[0];
             }
 
             DeltaRotation = new float[NbVoiture];
             DeltaPosition = new Vector3[NbVoiture];
 
-            ÉtatCollisionPiste = new bool[LaPiste.Count(), NbVoiture];
+            ÉtatCollisionPiste = new bool[PisteSansCourbe.Count(), NbVoiture];
 
             //Caméra
             VueArrière = 1;
@@ -243,17 +247,18 @@ namespace SimulationVéhicule
                 {
                     TempsAdversaire = 1000;
                 }
-                TempsParCheckPointAdversaire = TempsAdversaire / (LaPiste.Count() * NbTours * 2);
+                TempsParCheckPointAdversaire = TempsAdversaire / (PisteSansCourbe.Count() * NbTours * 2);
             }
 
             CourseTerminée = false;
+
+            AfficherMessageReplacer = false;
 
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            CourseActive = (bool)Game.Services.GetService(typeof(bool));
             if (CourseActive)
             {
                 GérerClavier();
@@ -306,7 +311,7 @@ namespace SimulationVéhicule
                         //Gestion des checks points
                         GestionDesCheckPoints();
 
-                        int nbCheckPointParTour = LaPiste.Count() * Sol.NB_CHECK_POINT;
+                        int nbCheckPointParTour = PisteSansCourbe.Count() * Sol.NB_CHECK_POINT;
                         PositionVoiture = new List<int[]>();
 
                     }
@@ -330,13 +335,13 @@ namespace SimulationVéhicule
                         d += " - " + x;
                     }
 
-                    for (int i = 0; i < LaPiste.Count(); i++)
+                    for (int i = 0; i < PisteSansCourbe.Count(); i++)
                     {
-                        for (int j = 0; j < LaPiste[i].BoxÉtape.Count(); j++)
+                        for (int j = 0; j < PisteSansCourbe[i].BoxÉtape.Count(); j++)
                         {
                             if (ListeCheckPoint[IDVoitureUtilisateur][i + i + j] == true)
                             {
-                                LaPiste[i].CouleurCheckPoint = Color.Green;
+                                PisteSansCourbe[i].CouleurCheckPoint = Color.Green;
                             }
                         }
                     }
@@ -369,6 +374,11 @@ namespace SimulationVéhicule
         {
             if (CourseActive)
             {
+                if (AfficherMessageReplacer)
+                {
+                    GestionSprites.DrawString(Bebas, GetMessage(2), new Vector2(Game.Window.ClientBounds.Width/2, Game.Window.ClientBounds.Height - 100), Color.White, 0, Bebas.MeasureString(GetMessage(2))/2, 0.5f, SpriteEffects.None, 0);
+                }
+
                 if (AfficherTexte)
                 {
                     GestionSprites.DrawString(Bebas, GetMessage(0), PositionNomCarte, Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
@@ -565,6 +575,10 @@ namespace SimulationVéhicule
                 //nom de la carte
                 msg = "\"Espace\" pour continuer";
             }
+            else if(message == 2)
+            {
+                msg = "Appuyer sur R pour vous replacer";
+            }
             return msg;
         }
 
@@ -677,14 +691,14 @@ namespace SimulationVéhicule
         void GestionAnimationFinCourse()
         {
 
-            if (NbFranchis[0] >= LaPiste.Count() * NbTours * 2 || NbFranchis[1] >= LaPiste.Count() * NbTours * 2)
+            if (NbFranchis[0] >= PisteSansCourbe.Count() * NbTours * 2 || NbFranchis[1] >= PisteSansCourbe.Count() * NbTours * 2)
             {
                 CourseTerminée = true;
             }
 
             if (CourseTerminée)
             {
-                CaméraJeu.Position = LaPiste[0].Position + new Vector3(100, 25, 0);
+                CaméraJeu.Position = PisteSansCourbe[0].Position + new Vector3(100, 25, 0);
                 Interface.Afficher = false;
                 CaméraJeu.Direction = ListeVoiture[IDVoitureUtilisateur].Position;
                 ListeVoiture[IDVoitureUtilisateur].Controle = false;
@@ -734,7 +748,6 @@ namespace SimulationVéhicule
         {
             if (ModeDeJeu == 0)
             {
-                //Game.Window.Title = (NbFranchis[IDVoitureUtilisateur] * TempsParCheckPointAdversaire).ToString() + " - " + Interface.TempsMilliSeconde.ToString() + " - " + (TempsAdversaire/(LaPiste.Count() * 1)).ToString();
                 if (Interface.TempsMilliSeconde > NbFranchis[IDVoitureUtilisateur] * TempsParCheckPointAdversaire)
                 {
                     PositionUtilisateur = 2;
@@ -752,9 +765,9 @@ namespace SimulationVéhicule
             {
                 //ini liste de tous les checks points
                 ListeCheckPoint[v] = new List<bool>();
-                for (int i = 0; i < LaPiste.Count(); i++)
+                for (int i = 0; i < PisteSansCourbe.Count(); i++)
                 {
-                    foreach (bool x in LaPiste[i].ListeFranchiParVoiture[v])
+                    foreach (bool x in PisteSansCourbe[i].ListeFranchiParVoiture[v])
                     {
                         ListeCheckPoint[v].Add(x);
                     }
@@ -765,74 +778,74 @@ namespace SimulationVéhicule
                     //retour checkpont à false si tour complet
                     if (ListeCheckPoint[v].TrueForAll(x => x))
                     {
-                        for (int i = 0; i < LaPiste.Count(); i++)
+                        for (int i = 0; i < PisteSansCourbe.Count(); i++)
                         {
                             for (int j = 0; j < Sol.NB_CHECK_POINT; j++)
                             {
-                                LaPiste[i].ListeFranchiParVoiture[v][j] = false;
+                                PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = false;
                             }
                         }
                         ToursFait[v]++;
                     }
                 }
-                if (!ListeVoiture[v].BoxVoiture.Intersects(LaPiste[LaPiste.Count() - 1].BoxÉtape[Sol.NB_CHECK_POINT - 1]))
+                if (!ListeVoiture[v].BoxVoiture.Intersects(PisteSansCourbe[PisteSansCourbe.Count() - 1].BoxÉtape[Sol.NB_CHECK_POINT - 1]))
                 {
-                    LaPiste[LaPiste.Count() - 1].ListeFranchiParVoiture[v][1] = false;
+                    PisteSansCourbe[PisteSansCourbe.Count() - 1].ListeFranchiParVoiture[v][1] = false;
                 }
 
                 //détection collision check point
-                for (int i = 0; i < LaPiste.Count(); i++)
+                for (int i = 0; i < PisteSansCourbe.Count(); i++)
                 {
-                    for (int j = 0; j < LaPiste[i].BoxÉtape.Count(); j++)
+                    for (int j = 0; j < PisteSansCourbe[i].BoxÉtape.Count(); j++)
                     {
-                        if (ListeVoiture[v].BoxVoiture.Intersects(LaPiste[i].BoxÉtape[j]))
+                        if (ListeVoiture[v].BoxVoiture.Intersects(PisteSansCourbe[i].BoxÉtape[j]))
                         {
-                            if (i != 0 && j == 1 && LaPiste[i].ListeFranchiParVoiture[v][j - 1] == true)
+                            if (i != 0 && j == 1 && PisteSansCourbe[i].ListeFranchiParVoiture[v][j - 1] == true)
                             {
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) >= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) >= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = true;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = true;
                                 }
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) <= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) <= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = false;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = false;
                                 }
                             }
-                            if (i != 0 && j == 0 && LaPiste[i - 1].ListeFranchiParVoiture[v][j + 1] == true)
+                            if (i != 0 && j == 0 && PisteSansCourbe[i - 1].ListeFranchiParVoiture[v][j + 1] == true)
                             {
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) >= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) >= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = true;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = true;
                                 }
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) <= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) <= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = false;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = false;
                                 }
                             }
                             if (i == 0)
                             {
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) >= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) >= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = true;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = true;
                                 }
-                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, LaPiste[i].RotationInitiale.Y, LaPiste[i].Courbe) <= 0)
+                                if (GetSensDeltaRotationSol(ListeVoiture[v].Rotation.Y, PisteSansCourbe[i].RotationInitiale.Y, PisteSansCourbe[i].Courbe) <= 0)
                                 {
-                                    LaPiste[i].ListeFranchiParVoiture[v][j] = false;
+                                    PisteSansCourbe[i].ListeFranchiParVoiture[v][j] = false;
                                 }
                             }
                         }
                     }
                 }
 
-                for (int i = 0; i < LaPiste.Count(); i++)
+                for (int i = 0; i < PisteSansCourbe.Count(); i++)
                 {
-                    for (int j = 0; j < LaPiste[i].BoxÉtape.Count(); j++)
+                    for (int j = 0; j < PisteSansCourbe[i].BoxÉtape.Count(); j++)
                     {
-                        ListeCheckPoint[v][i + i + j] = LaPiste[i].ListeFranchiParVoiture[v][j];
+                        ListeCheckPoint[v][i + i + j] = PisteSansCourbe[i].ListeFranchiParVoiture[v][j];
                     }
                 }
 
-                NbFranchis[v] = ListeCheckPoint[v].Where(x => x).Count() + (ToursFait[v] * LaPiste.Count() * Sol.NB_CHECK_POINT);
+                NbFranchis[v] = ListeCheckPoint[v].Where(x => x).Count() + (ToursFait[v] * PisteSansCourbe.Count() * Sol.NB_CHECK_POINT);
 
                 PositionVoiture.Add(new int[] { v, NbFranchis[v] });
             }
@@ -846,122 +859,133 @@ namespace SimulationVéhicule
 
         public void CréationPiste()
         {
+            PisteSansCourbe = new List<Sol>();
             if (Piste == 0)
             {
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 1100), new Vector2(100, 200), new Vector2(2, 2), "routeDépart", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 1300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 1500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 1700), new Vector2(100, 200), new Vector2(2, 2), "route", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 1900), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 2100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 2300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 2500), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1850, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1650, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1450, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1250, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1050, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-850, 0, 2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-650, 0, 2600), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-550, 0, 2600), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-550, 0, 2800), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-550, 0, 3000), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-550, 0, 3200), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-550, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-350, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-150, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-50, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(50, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(150, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(350, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(550, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(750, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(950, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1150, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1350, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1550, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1750, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1950, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2150, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2350, 0, 3200), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(MathHelper.Pi / 32f, 0, 0), new Vector3(2350, 0, 3200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 3000), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 2800), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 2600), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 2400), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 2200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 2000), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 1800), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 1600), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 1400), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 1200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 1000), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 800), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 600), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 400), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, 0), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, -200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, -400), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, -600), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, -800), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2350, 0, -1000), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1200), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1300), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -1900), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -2100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -2300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2450, 0, -2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2450, 0, -2700), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2450, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2250, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2050, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1850, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1650, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1450, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1250, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1050, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(850, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(650, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(450, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(250, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(50, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-50, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-250, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-450, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-650, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-850, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1050, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1250, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1450, 0, -2700), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -2700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -2500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -2300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -2100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -1900), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -1700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -1500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -1300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -1100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -900), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -300), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, -100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, 100), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1450, 0, 200), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(-1550, 0, 400), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1550, 0, 500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1750, 0, 500), new Vector2(100, 100), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1850, 0, 500), new Vector2(100, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 500), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 700), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
-                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1850, 0, 900), new Vector2(100, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 1100), new Vector2(200, 200), new Vector2(2, 2), "routeDépart", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 2500), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1800, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1600, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1400, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1200, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-1000, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-800, 0, 2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-600, 0, 2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, MathHelper.PiOver2, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-500, 0, 2600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 2900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-400, 0, 3100), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-400, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+               // LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-300, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(-200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(0, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(100, 0, 3200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(400, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(600, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(800, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1000, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1400, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1600, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(1800, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2000, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(MathHelper.Pi / 32f, 0, 0), new Vector3(2200, 0, 3100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 3000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 2000), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1800), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1600), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1400), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1200), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 1000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, 0), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -200), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -400), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -600), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -800), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2200, 0, -1000), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1100), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, MathHelper.PiOver2, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1300), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(2300, 0, -2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, -MathHelper.PiOver2, 0), new Vector3(2300, 0, -2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, MathHelper.PiOver2, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(2100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1900, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1700, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(1100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(900, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(700, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(500, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(300, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(100, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(0, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-600, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-800, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1000, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1200, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1400, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1600, 0, -2700), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -2700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -2500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -2300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -2100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -1900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -1700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -1500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -1300), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -1100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -900), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -700), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -300), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, -100), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, 0, 100), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1600, -1, 200), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, 0, 0), new Vector3(-1800, 0, 300), new Vector2(200, 200), new Vector2(2, 20), "routeSale", 0, 0, true, -MathHelper.PiOver2, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1500, 0, 500), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                //LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1700, 0, 500), new Vector2(200, 100), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.PiOver2, 0), new Vector3(-1800, 0, 500), new Vector2(200, 200), new Vector2(2, 20), "routeSale2", 0, 0, true, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 500), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 700), new Vector2(200, 200), new Vector2(2, 2), "routeSale2", 0, 0, false, 0, NbVoiture));
+                LaPiste.Add(new Sol(Game, 1.0f, new Vector3(0, MathHelper.Pi, 0), new Vector3(-1800, 0, 900), new Vector2(200, 200), new Vector2(2, 2), "routeSale", 0, 0, false, 0, NbVoiture));
 
 
+            }
+
+
+            foreach (Sol x in LaPiste)
+            {
+                if (!x.Courbe)
+                {
+                    PisteSansCourbe.Add(x);
+                }
             }
         }
 
@@ -1041,11 +1065,16 @@ namespace SimulationVéhicule
             {
                 if (NbFranchis[IDVoitureUtilisateur] >= 2)
                 {
-                    ListeVoiture[IDVoitureUtilisateur].Position = LaPiste[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - (ToursFait[IDVoitureUtilisateur] * LaPiste.Count())].Position + new Vector3((float)Math.Cos(LaPiste[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - (ToursFait[IDVoitureUtilisateur] * LaPiste.Count())].RotationInitiale.Y) * 50, 0, (float)Math.Sin(LaPiste[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - (ToursFait[IDVoitureUtilisateur] * LaPiste.Count())].RotationInitiale.Y) * -50);
+                    ListeVoiture[IDVoitureUtilisateur].Position = PisteSansCourbe[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - 
+                        (ToursFait[IDVoitureUtilisateur] * PisteSansCourbe.Count())].Position +//Position de la piste ou se trouve la voiture
+                        new Vector3((float)Math.Cos(PisteSansCourbe[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - 
+                            (ToursFait[IDVoitureUtilisateur] * PisteSansCourbe.Count())].RotationInitiale.Y) * 100, 0, 
+                            (float)Math.Sin(PisteSansCourbe[(int)(NbFranchis[IDVoitureUtilisateur] / 2) - 
+                            (ToursFait[IDVoitureUtilisateur] * PisteSansCourbe.Count())].RotationInitiale.Y) * -100);
                 }
                 else
                 {
-                    ListeVoiture[IDVoitureUtilisateur].Position = LaPiste[0].Position + new Vector3((float)Math.Cos(LaPiste[0].RotationInitiale.Y) * 50, 0, (float)Math.Sin(LaPiste[0].RotationInitiale.Y) * -50);
+                    ListeVoiture[IDVoitureUtilisateur].Position = PisteSansCourbe[0].Position + new Vector3((float)Math.Cos(PisteSansCourbe[0].RotationInitiale.Y) * 100, 0, (float)Math.Sin(PisteSansCourbe[0].RotationInitiale.Y) * -100);
                 }
             }
         }
@@ -1055,9 +1084,9 @@ namespace SimulationVéhicule
             for (int v = 0; v < NbVoiture; v++)
             {
                 bool collisionTouteFausse = true;
-                for (int i = 0; i < LaPiste.Count(); i++)
+                for (int i = 0; i < PisteSansCourbe.Count(); i++)
                 {
-                    ÉtatCollisionPiste[i, v] = ListeVoiture[v].GestionCollisionPiste(LaPiste[i]);
+                    ÉtatCollisionPiste[i, v] = ListeVoiture[v].GestionCollisionPiste(PisteSansCourbe[i]);
                 }
                 for (int i = 0; i < ÉtatCollisionPiste.GetLength(0) && collisionTouteFausse; i++)
                 {
@@ -1090,39 +1119,47 @@ namespace SimulationVéhicule
 
         void GestionDesCheckPoints()
         {
-            for (int v = 0; v < NbVoiture; v++)
-            {
-                ListeDansLesLimites[v] = new List<bool>();
+            //for (int v = 0; v < NbVoiture; v++)//pas pour chaque voiture?
+           // {
+                ListeDansLesLimites[0] = new List<bool>();
 
                 for (int i = 0; i < ListeLimitePiste.Count(); i++)
                 {
-                    ListeDansLesLimites[v].Add(ListeVoiture[v].SphereRouteAvant.Intersects(LaPiste[i].BoxComplet));
+                    ListeDansLesLimites[0].Add(ListeVoiture[0].SphereRouteAvant.Intersects(LaPiste[i].BoxComplet));
                 }
 
-                if (ListeDansLesLimites[v].TrueForAll(x => !x))
+                if (ListeDansLesLimites[0].TrueForAll(x => !x))
                 {
+                    if (!EstSonJoué[6])
+                    {
+                        ListeVoiture[0].SoundCollisionBordure.Play();
+                        EstSonJoué[6] = true;
+                    }
+                    AfficherMessageReplacer = true;
                     for (int i = 0; i < ListeLimitePiste.Count(); i++)
                     {
-                        if (ListeVoiture[v].BoxVoiture.Intersects(LaPiste[i].BoxComplet))//Pour empêcher d'avancer ou de reculer selon l'orientation
+                        if (ListeVoiture[0].BoxVoiture.Intersects(LaPiste[i].BoxComplet))//Pour empêcher d'avancer ou de reculer selon l'orientation
                         {
-                            SolEnCollision[v] = LaPiste[i];
-                            DeltaPosition[v] = SolEnCollision[v].Position - ListeVoiture[v].Position;
-                            GestionCollisionBordure(SolEnCollision[v], DeltaPosition[v]);
+                            SolEnCollision[0] = LaPiste[i];
+                            DeltaPosition[0] = SolEnCollision[0].Position - ListeVoiture[0].Position;
+                            GestionCollisionBordure(SolEnCollision[0], DeltaPosition[0]);
                         }
                     }
-                    if (!VitesseMiseÀZéro[v])
+                    if (!VitesseMiseÀZéro[0])
                     {
-                        ListeVoiture[v].Vitesse = 0;
-                        VitesseMiseÀZéro[v] = true;
+                        ListeVoiture[0].Vitesse = 0;
+                        VitesseMiseÀZéro[0] = true;
                     }
                 }
                 else
                 {
-                    VitesseMiseÀZéro[v] = false;
-                    ListeVoiture[v].AvancePossiblePiste = true;
-                    ListeVoiture[v].ReculePossiblePiste = true;
+                    EstSonJoué[6] = false;
+                    VitesseMiseÀZéro[0] = false;
+                    ListeVoiture[0].AvancePossiblePiste = true;
+                    ListeVoiture[0].ReculePossiblePiste = true;
+                    AfficherMessageReplacer = false;
                 }
-            }
+            //}
         }
 
     }

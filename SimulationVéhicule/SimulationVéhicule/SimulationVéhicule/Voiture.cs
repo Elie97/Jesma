@@ -65,6 +65,9 @@ namespace SimulationVéhicule
         SoundEffectInstance SoundCourbe { get; set; }
         SoundEffectInstance BornToBeWild { get; set; }
         SoundEffectInstance ChaseAndStatus { get; set; }
+        SoundEffectInstance SoundFrein { get; set; }
+        public SoundEffect SoundCollisionBordure { get; set; }
+        SoundEffectInstance SoundCollisionVoiture { get; set; }
         List<SoundEffectInstance> ListeChanson { get; set; }
 
         bool User { get; set; }
@@ -103,7 +106,7 @@ namespace SimulationVéhicule
 
         public int NbFranchis { get; set; }
 
-        bool CourseActive { get; set; }
+        public bool CourseActive { get; set; }
 
         public Voiture(Game jeu, String nomModèle, float échelleInitiale, Vector3 rotationInitiale, Vector3 positionInitiale, float intervalleMAJ, bool user, bool afficher)
             : base(jeu)
@@ -121,6 +124,7 @@ namespace SimulationVéhicule
 
         public override void Initialize()
         {
+            CourseActive = false;
             CalculerMonde();
             Controle = true;
             NbFranchis = 0;
@@ -196,6 +200,9 @@ namespace SimulationVéhicule
             SoundCourbe = GestionnaireDeSon.Find("BrakeCurveMajor").CreateInstance();
             BornToBeWild = GestionnaireDeSon.Find("BornToBeWild").CreateInstance();
             ChaseAndStatus = GestionnaireDeSon.Find("ChaseAndStatus").CreateInstance();
+            SoundFrein = GestionnaireDeSon.Find("frein").CreateInstance();
+            SoundCollisionBordure = GestionnaireDeSon.Find("collisionBordure");
+            SoundCollisionVoiture = GestionnaireDeSon.Find("collisionVoiture").CreateInstance();
 
             ListeChanson = new List<SoundEffectInstance>();
             ListeChanson.Add(BornToBeWild);
@@ -257,7 +264,6 @@ namespace SimulationVéhicule
 
         public override void Update(GameTime gameTime)
         {
-            CourseActive = (bool)Game.Services.GetService(typeof(bool));
             if (CourseActive)
             {
                 TempsÉcouléDepuisMAJ += (float)gameTime.ElapsedGameTime.TotalSeconds;
@@ -548,27 +554,27 @@ namespace SimulationVéhicule
                 {
                     SoundCourbe.Volume = SoundCourbe.Volume - 0.05f;
                 }
-                //if (Vitesse >= KMHtoPixel(0) && Vitesse < KMHtoPixel(30))
-                //{
+
+                if (Vitesse >= KMHtoPixel(0) && Vitesse < KMHtoPixel(40))
+                {
                     SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.1f;
-                //}
-                //else if (Vitesse >= KMHtoPixel(30) && Vitesse < KMHtoPixel(60))
-                //{
-                //    //SoundChangementVitesse.Play();
-                //    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.3f;
-                //}
-                //else if (Vitesse >= KMHtoPixel(60) && Vitesse < KMHtoPixel(100))
-                //{
-                //    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.5f;
-                //}
-                //else if (Vitesse >= KMHtoPixel(100) && Vitesse < KMHtoPixel(150))
-                //{
-                //    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.7f;
-                //}
-                //else if (Vitesse >= KMHtoPixel(150))
-                //{
-                //    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.9f;
-                //}
+                }
+                else if (Vitesse >= KMHtoPixel(40) && Vitesse < KMHtoPixel(70))
+                {
+                    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.3f;
+                }
+                else if (Vitesse >= KMHtoPixel(70) && Vitesse < KMHtoPixel(100))
+                {
+                    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.5f;
+                }
+                else if (Vitesse >= KMHtoPixel(100) && Vitesse < KMHtoPixel(150))
+                {
+                    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.7f;
+                }
+                else if (Vitesse >= KMHtoPixel(150))
+                {
+                    SoundAcceleration.Pitch = (Math.Abs(PixelToKMH(Vitesse)) / VITESSE_MAX) - 0.9f;
+                }
             }
             else
             {
@@ -588,6 +594,16 @@ namespace SimulationVéhicule
             else
             {
                 SoundCourbe.Stop();
+            }
+
+            if (GestionInput.EstEnfoncée(Keys.Tab) && Vitesse >= KMHtoPixel(70))
+            {
+                SoundFrein.Play();
+                SoundAcceleration.Volume = 0.2f;
+            }
+            else if (!GestionInput.EstEnfoncée(Keys.Tab))
+            {
+                SoundFrein.Stop();
             }
 
             if (Vitesse == 0)
@@ -610,6 +626,10 @@ namespace SimulationVéhicule
                 Vitesse -= Vitesse * 0.5f;
                 voiture.Avance();
                 AvancePossible = false;
+                if (Vitesse >= KMHtoPixel(50))
+                {
+                    SoundCollisionVoiture.Play();
+                }
             }
             else if (BoxVoitureAvant.Intersects(voiture.BoxVoitureMillieu) && !BoxVoitureAvant.Intersects(voiture.BoxVoitureArrière))
             {
@@ -636,6 +656,10 @@ namespace SimulationVéhicule
                         voiture.Position = new Vector3(voiture.Position.X - (1.01f * Vitesse * (float)Math.Sin(deltaRotation)), voiture.Position.Y, voiture.Position.Z + (1.01f * Vitesse * (float)Math.Cos(deltaRotation)));
                     }
                 }
+                if (Vitesse >= KMHtoPixel(50))
+                {
+                    SoundCollisionVoiture.Play();
+                }
             }
             else if (BoxVoitureAvant.Intersects(voiture.BoxVoitureAvant))
             {
@@ -647,6 +671,11 @@ namespace SimulationVéhicule
                 voiture.Vitesse += Vitesse * -0.5f;
                 Vitesse -= Vitesse * 0.5f;
                 voiture.Avance();
+                if (Vitesse >= KMHtoPixel(50))
+                {
+                    SoundCollisionVoiture.Play();
+                }
+
             }
             else
             {
@@ -659,6 +688,7 @@ namespace SimulationVéhicule
             }
             RotationCollision(voiture, false, RotationEnCollision, DernièreCollisionEstAvant);
         }
+
 
         public bool GestionCollisionPiste(Sol sol)
         {

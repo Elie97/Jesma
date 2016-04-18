@@ -42,6 +42,7 @@ namespace SimulationVéhicule
         Effect effect;
 
         public bool CourseActive { get; set; }
+
         public LeTerrain2(Game jeu, float homothétieInitiale, Vector3 rotationInitiale, Vector3 positionInitiale,
                        Vector3 étendue, string nomCarteTerrain, string nomTextureTerrain, int nbNiveauxTexture, float intervalleMAJ)
             : base(jeu, homothétieInitiale, rotationInitiale, positionInitiale, intervalleMAJ)
@@ -218,7 +219,7 @@ namespace SimulationVéhicule
         public override void Draw(GameTime gameTime)
         {
             //CourseActive = GetCourseActive();
-            Game.Window.Title = CourseActive.ToString();
+            //Game.Window.Title = CourseActive.ToString();
             if (CourseActive)
             {
                 GestionMatriceMonde();
